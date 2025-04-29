@@ -1,0 +1,54 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{physics}
+\usepackage{csquotes}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{authblk}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{./references-pre-project.bib}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={Report},
+  pdfauthor={Rodriguez S, Torres L, Avila J},
+  pdfsubject={Couple Oscillators},
+}
+\urlstyle{same}
+
+\title{\textbf{Couple Oscillators}}
+\author{Rodriguez S}
+\author{Torres L}
+\author{Avila J}
+\affil{Universidad Distrital Francisco José de Caldas}
+
+\fancyhf{}
+\lhead{\textit{Osciladores}}
+\rhead{\textit{Rodriguez, Torres, Avila}}
+\rfoot{Pagina \thepage\ de \pageref{LastPage}}
+\pagestyle{fancy}
+
+\begin{document}
+
+\maketitle
+\vspace{-1em}
+\hrule
+\vspace{1em}
+
+\printbibliography
+
+\end{document}
