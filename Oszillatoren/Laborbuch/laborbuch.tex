@@ -1,0 +1,52 @@
+\documentclass[11pt,a4paper]{labbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+\usepackage{scrindex}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{csquotes}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{authblk}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{./references-pre-project.bib}
+
+\title{\textbf{Osciladores Acoplados} \\
+Bitácora de Laboratorio}
+\author{Sebastian Rodríguez \and Laura Torres \and Julian Avila}
+\affil{Universidad Distrital Francisco José de Caldas}
+\date{}
+
+\fancyhf{}
+\lhead{\textit{Bitácora de Laboratorio}}
+\rhead{\textit{Rodríguez, Torres, Avila}}
+\rfoot{Pagina \thepage\ de \pageref{LastPage}}
+\pagestyle{fancy}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\labday{Miércoles 23, Abril 2025}
+
+\input{./Sections/2025-04-23.tex}
+
+\labday{Jueves 24, Abril 2025}
+
+\input{./Sections/2025-04-24.tex}
+
+\printbibliography
+
+\end{document}
