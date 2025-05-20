@@ -1,24 +1,25 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
 
-\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}%
+\usepackage{multirow}%
+\usepackage{amsmath,amssymb,amsfonts}%
+\usepackage{amsthm}%
+\usepackage{mathrsfs}%
+\usepackage[title]{appendix}%
+\usepackage{xcolor}%
+\usepackage{textcomp}%
+\usepackage{manyfoot}%
+\usepackage{booktabs}%
+\usepackage{algorithm}%
+\usepackage{algorithmicx}%
+\usepackage{algpseudocode}%
 \usepackage{microtype}
-\usepackage{graphicx}
-\usepackage{amsmath,amssymb}
-\usepackage{physics}
 \usepackage{csquotes}
-\usepackage{xcolor}
-\usepackage{booktabs}
-\usepackage{enumitem}
 \usepackage{hyperref}
-\usepackage{authblk}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-
-\usepackage[backend=biber,style=numeric]{biblatex}
-\addbibresource{./references-pre-project.bib}
 
 \hypersetup{
   colorlinks=true,
@@ -26,29 +27,39 @@
   urlcolor=blue,
   pdftitle={Report},
   pdfauthor={Rodriguez S, Torres L, Avila J},
-  pdfsubject={Couple Oscillators},
+  pdfsubject={Coupled Oscillators},
 }
 \urlstyle{same}
 
-\title{\textbf{Couple Oscillators}}
-\author{Rodriguez S}
-\author{Torres L}
-\author{Avila J}
-\affil{Universidad Distrital Francisco José de Caldas}
-
-\fancyhf{}
-\lhead{\textit{Osciladores}}
-\rhead{\textit{Rodriguez, Torres, Avila}}
-\rfoot{Pagina \thepage\ de \pageref{LastPage}}
-\pagestyle{fancy}
+\raggedbottom
 
 \begin{document}
 
-\maketitle
-\vspace{-1em}
-\hrule
-\vspace{1em}
+\title[Modos Normales]{\textbf{Modos Normales}}
+\author[1]{\fnm{Sebastián} \sur{Rodríguez}}
+\author[1]{\fnm{Laura} \sur{Torres}}
+\author[1]{\fnm{Julian} \sur{Avila}}
+\affil[1]{\orgdiv{Física}, \orgname{Universidad Distrital Francisco José de Caldas}}
 
-\printbibliography
+\abstract{a}
+
+\maketitle
+
+\section{Introducción}%
+\label{sec:Introducción}
+
+\section{Métodos}%
+\label{sec:Métodos}
+
+\section{Resultados}%
+\label{sec:Resultados}
+
+\section{Discusión}%
+\label{sec:Discusión}
+
+\section{Conclusiones}%
+\label{sec:Conclusiones}
+
+\bibliography{references}
 
 \end{document}
