@@ -1,0 +1,12 @@
+--- Federanalyse-Ergebnisse für 2 Federn ---
+
+=== Ergebnisse für Feder 1: Feder 1 (./spring-1.tsv) ===
+Federkonstante (k): 3.0440 N/m
+Ruhelänge (L0): 0.1300 m (13.00 cm)
+-----------------------------------------
+
+=== Ergebnisse für Feder 2: Feder 2 (./spring-2.tsv) ===
+Federkonstante (k): 3.3248 N/m
+Ruhelänge (L0): 0.1098 m (10.98 cm)
+-----------------------------------------
+
