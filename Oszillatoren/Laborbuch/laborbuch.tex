@@ -1,37 +1,40 @@
-\documentclass[11pt,a4paper]{labbook}
+\documentclass[11pt,
+  letterpaper,
+  openany,
+  toc=bibliography,
+  idxtotoc,
+  bookmarks]{labbook}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-
-\usepackage{scrindex}
 
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{microtype}
 \usepackage{graphicx}
 \usepackage{amsmath,amssymb}
 \usepackage{csquotes}
-\usepackage{xcolor}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{authblk}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
+\usepackage[spanish]{cleveref}
+\usepackage[dvipsnames]{xcolor}
 
 \usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{./references-pre-project.bib}
+
+\usepackage{pdfbase}
+\pdfinfo{
+  /Title (Osciladores Acoplados - Bitácora de Laboratorio)
+  /Author (Sebastián Rodríguez, Laura Torres, Julián Ávila)
+  /Creator (LaTeX with labbook class)
+}
 
 \title{\textbf{Osciladores Acoplados} \\
 Bitácora de Laboratorio}
 \author{Sebastian Rodríguez \and Laura Torres \and Julian Avila}
 \affil{Universidad Distrital Francisco José de Caldas}
 \date{}
-
-\fancyhf{}
-\lhead{\textit{Bitácora de Laboratorio}}
-\rhead{\textit{Rodríguez, Torres, Avila}}
-\rfoot{Pagina \thepage\ de \pageref{LastPage}}
-\pagestyle{fancy}
 
 \begin{document}
 
