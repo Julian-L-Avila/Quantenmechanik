@@ -18,7 +18,7 @@ La distancia \( a \) es la separación entre cada péndulo. \( cl \) es
 la distancia a la cual se acoplan los péndulos 1 y 2 por medio del
 resorte con constante \( k_1 \), mientras que \( dl \) es la distancia
 de acople entre 2 y 3 por medio del resorte con constante \( k_2 \).
-Los \(y_{\text{cm}}_i\) corresponden a la distancia desde el punto de
+Los \(y_{\text{cm}_i}\) corresponden a la distancia desde el punto de
 giro al centro de masa. De esta forma, el torque restaurador
 gravitacional está relacionado con \(m_i g y_{\text{cm}_i} \sin{\theta_i}\).
 
@@ -33,15 +33,15 @@ sistema de ecuaciones diferenciales:
 \begin{equation}
   \begin{aligned}
     \ddot{\theta}_1 =\; &
-    -\theta_1 \left[ \frac{k_1 (cl)^2 + y_{cm_1} m_1 g}{I_1} \right]
+    -\theta_1 \left[ \frac{k_1 (cl)^2 + y_{\text{cm}_1} m_1 g}{I_1} \right]
     + \theta_2 \left( \frac{k_1 (cl)^2}{I_1} \right) \\[0.5em]
     \ddot{\theta}_2 =\; &
     \theta_1 \left( \frac{k_1 (cl)^2}{I_2} \right)
-    - \theta_2 \left[ \frac{k_1 (cl)^2 + k_2 (dl)^2 + y_{cm_2} m_2 g}{I_2} \right]
+    - \theta_2 \left[ \frac{k_1 (cl)^2 + k_2 (dl)^2 + y_{\text{cm}_2} m_2 g}{I_2} \right]
     + \theta_3 \left( \frac{k_2 (dl)^2}{I_2} \right) \\[0.5em]
     \ddot{\theta}_3 =\; &
     \theta_2 \left( \frac{k_2 (dl)^2}{I_3} \right)
-    - \theta_3 \left[ \frac{k_2 (dl)^2 + y_{cm_3} m_3 g}{I_3} \right]
+    - \theta_3 \left[ \frac{k_2 (dl)^2 + y_{\text{cm}_3} m_3 g}{I_3} \right]
   \end{aligned}
 \end{equation}
 
