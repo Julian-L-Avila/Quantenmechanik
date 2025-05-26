@@ -182,7 +182,7 @@ los t\'erminos inerciales e identificar la segunda derivada como el
 operador:
 \begin{equation}
   \mathbf{D}^2_t \bm{\Theta} = - \mathbf{\Omega} \bm{\Theta}
-\label{eq:eigenproblem}
+  \label{eq:eigenproblem}
 \end{equation}
 donde $\mathbf{D}^2_t$ representa el operador de la segunda derivada
 temporal y $\mathbf{\Omega} = \mathbf{M}^{-1}\mathbf{K}$ es la matriz
@@ -199,99 +199,175 @@ fundamentales: dise\~no y construcci\'on del montaje,
 caracterizaci\'on de sus componentes y adquisici\'on de datos
 mediante sensores angulares.
 
-\subsection*{Construcci\'on del Montaje}
+\subsection{Construcci\'on del Montaje}
 
 Para la construcci\'on del sistema se utilizaron tres barras
 met\'alicas de alta densidad, lo que contribuye a la rigidez del
-sistema y a una mejor definici\'on de su centro de masa
-. Las barras laterales tienen una longitud
+sistema y a una mejor definici\'on de su centro de masa.
+Las barras laterales tienen una longitud de
 $l/2 = \qty{28.0(1)}{\centi\metre}$, mientras que la barra central
-tiene una longitud $l = \qty{56.0(1)}{\centi\metre}$.
+posee una longitud de $l = \qty{56.0(1)}{\centi\metre}$.
 Las masas y las posiciones de los centros de masa de cada barra
 fueron determinadas experimentalmente y se resumen en la
-\cref{tab:parametros}. La posici\'on del centro de masa,
+\cref{tab:bars-dat}. La posici\'on del centro de masa,
 $y_{\text{cm},i}$, se mide desde el punto de pivote de cada p\'endulo.
 
 \begin{table}[htbp!]
+  \caption{Parámetros físicos de las barras empleadas en el montaje.La incertidumbre para la posición del centro de masa (\(y_{\text{cm}_i}\)) es de \qty{0.1}{\centi\metre} y para la masa (\(m_i\)) es de \qty{0.1}{\gram}.}
   \centering
-  \caption{Par\'ametros f\'isicos de las barras empleadas en el montaje.}
-  \label{tab:parametros}
-  \begin{tabular}{ccc}
-    \toprule
-    P\'endulo ($i$) & $y_{\text{cm},i}$ [\si{\centi\metre}] & $m_i$ [\si{\gram}] \\
-    \midrule
-    1 & 14.2  & 600.8  \\
-    2 & 28.0  & 1216.3  \\
-    3 & 14.0  & 601.8  \\
-    \bottomrule
-  \end{tabular}
+  \pgfplotstabletypeset[
+  col sep=comma,
+  zerofill,
+  columns/i/.style={
+    string type,
+    column type={c},
+    column name={\(i\)},
+  },
+  columns/y_cm_i/.style={
+    column name={\(y_{\text{cm}_i} [\si{\centi\metre}]\)},
+    precision=1,
+    fixed,
+    fixed zerofill,
+  },
+  columns/m_i/.style={
+    column type={c},
+    column name={\(m_i [\si{\gram}]\)},
+    dec sep align,
+    precision=1,
+    fixed,
+    fixed zerofill,
+  },
+  every head row/.style={
+    before row=\toprule,
+    after row=\midrule,
+  },
+  every last row/.style={
+    after row=\bottomrule,
+  }
+  ]\mydata
+  \label{tab:bars-dat}
 \end{table}
 
-Las barras fueron perforadas para permitir m\'ultiples puntos de
-acople de resortes. La \cref{fig:barras} muestra las barras
-preparadas para el montaje.
+Las barras fueron perforadas en m\'ultiples puntos para permitir
+diversas configuraciones de acople de los resortes. La
+\cref{fig:barras} muestra las barras met\'alicas preparadas para el
+montaje.
 
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=0.6\linewidth]{Figures/metal-bars.jpeg}
   \caption{Barras met\'alicas preparadas para el montaje de los
-  p\'endulos.}
+  p\'endulos, mostrando las perforaciones para el acople de resortes.}
   \label{fig:barras}
 \end{figure}
 
-\subsection*{Medici\'on de la Constante El\'astica}
+\subsection{Medici\'on de la Constante El\'astica}
 
-La constante el\'astica de los resortes ($k_1$ y $k_2$) se
-determin\'o mediante la aplicaci\'on de masas conocidas y el
-registro del desplazamiento resultante. Utilizando
-una regresi\'on lineal de los datos de fuerza versus elongaci\'on,
-se obtuvieron los siguientes valores:
-
+La constante el\'astica de los resortes empleados ($k_1$ y $k_2$) se
+determin\'o experimentalmente. Se aplicaron masas conocidas a cada
+resorte y se registraron los desplazamientos resultantes.
+Mediante una regresi\'on lineal de los datos de fuerza
+(peso aplicado) versus elongaci\'on, se obtuvieron los siguientes
+valores para las constantes el\'asticas:
 \begin{itemize}
   \item $k_1 = \qty{3.04(4)}{\N\per\m}$
   \item $k_2 = \qty{3.32(6)}{\N\per\m}$
 \end{itemize}
-El proceso de determinaci\'on de la constante el\'astica mediante
-regresi\'on lineal se ilustra en la \cref{fig:regresion}.
+El proceso gr\'afico de determinaci\'on de estas constantes se
+ilustra en la \cref{fig:regresion}.
 
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=0.75\linewidth]{Figures/springs-plot.pdf}
   \caption{Determinaci\'on de la constante el\'astica de los resortes
-  mediante regresi\'on lineal de fuerza vs. desplazamiento.}
+    mediante regresi\'on lineal de los datos de fuerza aplicada en
+  funci\'on del desplazamiento.}
   \label{fig:regresion}
 \end{figure}
 
 \subsection{Integraci\'on del Sistema de Medici\'on}
 
 Para registrar los desplazamientos angulares $\theta_i(t)$ de
-cada p\'endulo, se integraron sensores angulares rotacionales Cassy
-en cada punto de pivote. Las barras se fijaron a las ruedas del
-sensor utilizando alambre dulce. Aunque esta fijaci\'on
-podr\'ia introducir un peque\~no juego, se procur\'o minimizarlo para
-obtener mediciones precisas. La \cref{fig:montaje} muestra el
-montaje experimental completo.
+cada p\'endulo, se integraron sensores angulares rotacionales
+(Cassy) en cada uno de los puntos de pivote. Las barras de los
+p\'endulos se fijaron a las poleas de los sensores utilizando
+alambre dulce. Aunque esta metodolog\'ia de fijaci\'on podr\'ia
+introducir un m\'inimo juego mec\'anico, se realiz\'o con cautela
+para minimizar cualquier holgura y asegurar mediciones angulares
+precisas. La \cref{fig:montaje} presenta el montaje experimental
+completo con los sensores integrados.
 
 \begin{figure}[htbp!]
   \centering
   \includegraphics[width=0.75\textwidth]{Figures/set-up.jpeg}
   \caption{Montaje experimental completo del sistema de tres
-  p\'endulos acoplados con sensores angulares Cassy integrados.}
+    p\'endulos acoplados, con los sensores angulares Cassy
+  integrados en los pivotes.}
   \label{fig:montaje}
 \end{figure}
 
-\subsection*{Toma de Datos}
+\subsection{Toma de Datos y Configuraciones Experimentales}
 
-Se realizaron experimentos bajo cinco configuraciones distintas
-de acoplamiento (ver \cref{fig:configuraciones}) y tres tipos de
-condiciones iniciales:
+Se realizaron mediciones bajo cinco configuraciones distintas de
+acoplamiento de resortes, esquematizadas en la \cref{fig:configs}.
+Para cada configuraci\'on, se investigaron tres tipos de
+condiciones iniciales para excitar el sistema:
 \begin{itemize}
-  \item (001): Desplazamiento \'unicamente del p\'endulo 3.
-  \item (010): Desplazamiento \'unicamente del p\'endulo 2.
-  \item (101): Desplazamiento sim\'etrico de los p\'endulos 1 y 3.
+  \item (001): Desplazamiento inicial \'unicamente del p\'endulo 3.
+  \item (010): Desplazamiento inicial \'unicamente del p\'endulo 2.
+  \item (101): Desplazamiento inicial sim\'etrico de los p\'endulos
+    1 y 3 (en la misma direcci\'on y amplitud).
 \end{itemize}
-Cada configuraci\'on fue registrada durante aproximadamente 30
-segundos para capturar m\'ultiples oscilaciones.
-Los datos fueron almacenados digitalmente para su posterior
-an\'alisis y comparaci\'on con los resultados te\'oricos de los
-modos normales de oscilaci\'on.
+Cada medici\'on se registr\'o durante un intervalo aproximado de
+\qty{30}{\second}, permitiendo la captura de m\'ultiples
+oscilaciones completas. Los datos de los \'angulos en funci\'on
+del tiempo fueron almacenados digitalmente para su posterior
+an\'alisis y comparaci\'on con los resultados te\'oricos derivados
+de los modos normales de oscilaci\'on.
+
+\begin{figure}[htbp!]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{./Figures/15.pdf}
+    \caption{Configuraci\'on 1-5}
+    \label{fig:conf-1-5}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{./Figures/16.pdf}
+    \caption{Configuraci\'on 1-6}
+    \label{fig:conf-1-6}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.3\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{./Figures/26.pdf}
+    \caption{Configuraci\'on 2-6}
+    \label{fig:conf-2-6}
+  \end{subfigure}
+
+  \vspace{0.5cm} % Espacio vertical entre filas de subfiguras
+
+  \begin{subfigure}[b]{0.45\textwidth} % Ajustado para centrar mejor dos figuras
+    \centering
+    \includegraphics[width=0.6\linewidth]{./Figures/46.pdf} % Ajustado para que no sea tan grande
+    \caption{Configuraci\'on 4-6}
+    \label{fig:conf-4-6}
+  \end{subfigure}
+  \hfill % Para espaciar igualmente si hubiera otra
+  \begin{subfigure}[b]{0.45\textwidth} % Ajustado para centrar mejor dos figuras
+    \centering
+    \includegraphics[width=0.6\linewidth]{./Figures/66.pdf} % Ajustado para que no sea tan grande
+    \caption{Configuraci\'on 6-6}
+    \label{fig:conf-6-6}
+  \end{subfigure}
+
+  \caption{Representaci\'on esquem\'atica de las cinco configuraciones de
+    acoplamiento de resortes estudiadas. La nomenclatura 'X-Y' en
+    cada subfigura (e.g., 1-5) indica los orificios espec\'ificos
+    (numerados) en los p\'endulos adyacentes donde se anclaron
+  los extremos de los resortes.}
+  \label{fig:configs}
+\end{figure}
