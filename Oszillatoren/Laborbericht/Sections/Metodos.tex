@@ -134,3 +134,82 @@ Finalmente, el sistema de ecuaciones diferenciales queda:
 \end{aligned}
 \end{equation}
 
+\section{Metodología Experimental}
+
+El presente experimento tiene como objetivo estudiar los modos normales de oscilación en un sistema de tres péndulos físicos acoplados mediante resortes. El desarrollo metodológico se divide en varias etapas clave que incluyen el diseño y construcción del montaje, caracterización de sus componentes y adquisición de datos mediante sensores angulares.
+
+\subsection{Construcción del Montaje}
+
+Para la construcción del sistema se utilizaron tres barras metálicas de alta densidad. Las barras laterales tienen una longitud $\ell/2 = (28.0 \pm 0.1)$ cm, mientras que la barra central tiene longitud $\ell = (56.0 \pm 0.1)$ cm. Las masas y centros de masa de cada barra fueron determinadas experimentalmente y se resumen en el Cuadro~\ref{tab:parametros}.
+
+\begin{table}[h!]
+    \centering
+    \caption{Parámetros físicos de las barras empleadas.}
+    \label{tab:parametros}
+    \begin{tabular}{c c c}
+        \toprule
+        Péndulo ($i$) & $y_{\text{cm},i}$ [cm] & $m_i$ [g] \\
+        \midrule
+        1 & 14.2 & 600.8 \\
+        2 & 28.0 & 1216.3 \\
+        3 & 14.0 & 601.8 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+Las barras fueron perforadas para permitir distintos puntos de acople de resortes. La Figura~\ref{fig:barras} muestra las barras listas para el montaje.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/barras_metalicas.jpg}
+    \caption{Barras metálicas preparadas para el montaje de los péndulos.}
+    \label{fig:barras}
+\end{figure}
+
+\subsection{Medición de la Constante Elástica}
+
+La constante elástica de los resortes fue determinada mediante la aplicación de masas conocidas y el registro de su desplazamiento. Utilizando una regresión lineal, se obtuvieron los siguientes valores:
+
+\begin{itemize}
+    \item $k_1 = (3.04 \pm 0.04)~\mathrm{Nm}^{-1}$
+    \item $k_2 = (3.32 \pm 0.06)~\mathrm{Nm}^{-1}$
+\end{itemize}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Figures/constante_elastica.jpg}
+    \caption{Determinación de la constante elástica mediante regresión lineal.}
+    \label{fig:regresion}
+\end{figure}
+
+\subsection{Integración del Sistema de Medición}
+
+Para registrar los desplazamientos angulares $\theta_i(t)$, se integraron sensores angulares rotacionales Cassy en cada punto de pivote de los péndulos. Las barras fueron fijadas a las ruedas del sensor utilizando alambre dulce.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Figures/montaje_completo.jpg}
+    \caption{Montaje experimental completo con sensores Cassy.}
+    \label{fig:montaje}
+\end{figure}
+
+\subsection{Toma de Datos}
+
+Se realizaron experimentos bajo cinco configuraciones distintas de acoplamiento (ver Figura~\ref{fig:configuraciones}) y tres tipos de condiciones iniciales:
+
+\begin{itemize}
+    \item (001): Desplazamiento solo del péndulo 3.
+    \item (010): Desplazamiento solo del péndulo 2.
+    \item (101): Desplazamiento simétrico de los péndulos 1 y 3.
+\end{itemize}
+
+Cada configuración fue registrada durante aproximadamente 30 segundos para capturar múltiples oscilaciones.
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/configuraciones_resortes.jpg}
+    \caption{Configuraciones de acoplamiento de resortes entre los péndulos.}
+    \label{fig:configuraciones}
+\end{figure}
+
+Los datos fueron almacenados digitalmente para su posterior análisis y comparación con los resultados teóricos de los modos normales de oscilación.
