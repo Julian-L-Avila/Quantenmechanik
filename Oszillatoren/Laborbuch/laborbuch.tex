@@ -19,6 +19,17 @@
 \usepackage{authblk}
 \usepackage[spanish]{cleveref}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplotstable}
+\usepackage{siunitx}
+
+\pgfplotsset{compat=1.18}
+\pgfkeys{/pgf/number format/1000 sep={\,}}
+
+\AtBeginDocument{\decimalpoint}
+\renewcommand{\arraystretch}{1.2}
+\sisetup{group-digits=true,
+  group-separator={\,},
+  separate-uncertainty}
 
 \usepackage[backend=biber,style=numeric]{biblatex}
 \addbibresource{./references-pre-project.bib}
@@ -49,6 +60,10 @@ Bitácora de Laboratorio}
 \labday{Jueves 24, Abril 2025}
 
 \input{./Sections/2025-04-24.tex}
+
+\labday{Miércoles 30, Abril 2025}
+
+\input{./Sections/2025-04-30.tex}
 
 \printbibliography
 
