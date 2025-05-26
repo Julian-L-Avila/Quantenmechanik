@@ -1,0 +1,136 @@
+\section{Desarrollo Teórico}
+
+Para describir la dinámica del sistema compuesto por tres péndulos físicos, se realizan varias consideraciones iniciales que permiten que tanto el experimento como la deducción de las ecuaciones de movimiento sean lo más naturales y simplificadas posible.
+
+Inicialmente, como se observa en la Figura~\ref{fig:esquema_equilibrio}, se tiene el esquema de los péndulos en sus puntos de equilibrio, donde los ejes de rotación están separados por una distancia \( a \), correspondiente a la longitud natural de los muelles.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/Screenshot From 2025-05-25 23-48-28.png}
+    \caption{Esquema de los péndulos en equilibrio.}
+    \label{fig:esquema_equilibrio}
+\end{figure}
+
+La forma más intuitiva de obtener las ecuaciones de movimiento del sistema es mediante una sumatoria de torques, considerando tanto el generado por los resortes como el producido por la fuerza gravitacional.
+
+Es necesario, entonces, encontrar una expresión para el torque gravitacional en función de cualquier ángulo \(\theta_i\), así como una expresión para las distancias del tipo \(x_0 + \Delta x\), que representan la elongación de los resortes en función de los ángulos \(\theta_i\) y \(\theta_{i+1}\).
+
+Las barras se enumeran de izquierda a derecha como 1, 2 y 3, según se muestra en la Figura~\ref{fig:enumeracion_barras}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{Figures/Ilustración_sin_título 4.pdf}
+    \caption{Numeración de las barras de izquierda a derecha.}
+    \label{fig:enumeracion_barras}
+\end{figure}
+
+Al desplazar del equilibrio las barras 1 y 2, se observa que la tangente de ambas se desvía del eje horizontal un ángulo \(\theta_i\). Esto permite construir un triángulo rectángulo con las componentes \(x_i\) e \(y_i\) de la posición del punto de aplicación de la fuerza elástica para cada barra, generalizada a cualquier fracción de la longitud \(l\), como se muestra en la Figura~\ref{fig:triangulo_posicion}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{Figures/Ilustración_sin_título 5.pdf}
+    \caption{Construcción geométrica para determinar la posición del punto de aplicación de la fuerza.}
+    \label{fig:triangulo_posicion}
+\end{figure}
+
+Las coordenadas \(x_i\) e \(y_i\) están definidas como:
+
+\begin{align}
+x_1 &= c \cdot l \sin(\theta_{1}), & x_2 &= c \cdot l \sin(\theta_{2}) \\
+y_1 &= c \cdot l \cos(\theta_{1}), & y_2 &= c \cdot l \cos(\theta_{2})
+\end{align}
+
+El triángulo resultante está definido por un ángulo \(\psi_1\), que cumple la relación \(\beta_1 + \psi_1 = \theta_1\), donde \(\beta_1\) corresponde al ángulo entre la tangente de la barra 1 y la línea recta que conecta los puntos de aplicación. A partir de este triángulo se obtiene la expresión para la elongación del resorte entre las barras 1 y 2:
+
+\begin{equation}
+x_{01} + \Delta x_{1} = \sqrt{(y_2 - y_1)^2 + (a + x_2 - x_1)^2}
+\end{equation}
+
+Y el ángulo \(\psi_1\) está dado por:
+
+\begin{equation}
+\psi_1 = \tan^{-1}\left( \frac{y_2 - y_1}{a - x_1 + x_2} \right)
+\end{equation}
+
+De forma análoga, para las barras 2 y 3 se utiliza el punto de aplicación \(dl\), resultando en:
+
+\begin{align}
+\psi_2 &= \tan^{-1} \left( \frac{y_4 - y_3}{a - x_3 + x_4} \right), \\
+x_{02} + \Delta x_{2} &= \sqrt{(y_4 - y_3)^2 + (a + x_4 - x_3)^2}
+\end{align}
+
+Donde:
+
+\begin{align}
+x_3 &= d \cdot l \sin(\theta_{2}), & x_4 &= d \cdot l \sin(\theta_{3}) \\
+y_3 &= d \cdot l \cos(\theta_{2}), & y_4 &= d \cdot l \cos(\theta_{3})
+\end{align}
+
+El torque gravitacional sobre cada barra está dado por:
+
+\begin{equation}
+\tau_{g_i} = \sin(\theta_i) \, y_{cm_i} \, m_i \, g
+\end{equation}
+
+Donde \(y_{cm_i}\) es la posición del centro de masa de la barra \(i\).
+
+Para los torques elásticos, se deben considerar los ángulos \(\beta_i\), definidos como:
+
+\begin{align}
+\beta_1 + \psi_1 &= \theta_1, & \beta_2 + \psi_1 &= \theta_2, \\
+\beta_2 + \psi_2 &= \theta_2, & \beta_4 + \psi_2 &= \theta_3
+\end{align}
+
+Debido a las distintas posiciones de aplicación entre los pares de barras, aparecen cuatro ángulos \(\beta_i\), donde los índices 2 y 3 están relacionados con la barra central.
+
+La sumatoria de torques, considerando sentido antihorario como positivo, da lugar a:
+
+\begin{align*}
+\sum \tau_{m1} &= \cos(\beta_1) \, c \, l \, k_1 (\Delta x_1) - \sin(\theta_1) \, y_{cm1} \, m_1 g = I_1 \, \ddot{\theta}_1, \\
+\sum \tau_{m2} &= \cos(\beta_3) \, d \, l \, k_2 (\Delta x_2) - \cos(\beta_2) \, c \, l \, k_1 (\Delta x_1) - \sin(\theta_2) \, y_{cm2} \, m_2 g = I_2 \, \ddot{\theta}_2, \\
+\sum \tau_{m3} &= -\cos(\beta_2) \, d \, l \, k_2 (\Delta x_2) + \sin(\theta_3) \, y_{cm3} \, m_3 g = I_3 \, \ddot{\theta}_3
+\end{align*}
+
+\subsection*{Aproximaciones para ángulos pequeños}
+
+Con el fin de encontrar una solución analítica aproximada que permita calcular las frecuencias naturales del sistema, se aplican las siguientes aproximaciones:
+
+\begin{align*}
+    \sin(\theta) &\approx \theta, \\
+    \cos(\theta) &\approx 1, \\
+    \tan(\theta) &\approx \theta
+\end{align*}
+
+Aplicando estas aproximaciones, las coordenadas se convierten en:
+
+\begin{align*}
+x_1 &= c \cdot l \cdot \theta_1, & x_2 &= c \cdot l \cdot \theta_2 \\
+x_3 &= d \cdot l \cdot \theta_2, & x_4 &= d \cdot l \cdot \theta_3 \\
+y_1 &= c \cdot l, & y_2 &= c \cdot l \\
+y_3 &= d \cdot l, & y_4 &= d \cdot l
+\end{align*}
+
+Si se cumple que \(x_{01} = x_{02} = a\), las elongaciones de los resortes se simplifican a:
+
+\begin{align*}
+\Delta x_1 &= cl(\theta_2 - \theta_1), & \Delta x_2 &= dl(\theta_3 - \theta_2)
+\end{align*}
+
+Además, si se asume que \(\tan(\psi_i) \approx \psi_i \approx 0\), entonces \(\beta_i \approx \theta_i\), lo que simplifica la sumatoria de torques a:
+
+\begin{align*}
+\sum \tau_{m1} &= cl \cdot k_1 (cl(\theta_2 - \theta_1)) - \theta_1 \cdot y_{cm1} \cdot m_1 g = I_1 \cdot \ddot{\theta}_1, \\
+\sum \tau_{m2} &= dl \cdot k_2 (dl(\theta_3 - \theta_2)) - cl \cdot k_1 (cl(\theta_2 - \theta_1)) - \theta_2 \cdot y_{cm2} \cdot m_2 g = I_2 \cdot \ddot{\theta}_2, \\
+\sum \tau_{m3} &= dl \cdot k_2 (dl(\theta_3 - \theta_2)) + \theta_3 \cdot y_{cm3} \cdot m_3 g = I_3 \cdot \ddot{\theta}_3
+\end{align*}
+
+Finalmente, el sistema de ecuaciones diferenciales queda:
+
+\begin{equation}
+\begin{aligned}
+\ddot{\theta}_1 =\; & \theta_1 \left( \frac{(cl)^2 k_{1} - x_{cm1} m_1 g}{I_1} \right) + \theta_2 \left( -\frac{k_1 (cl)^2}{I_1} \right) \\
+\ddot{\theta}_2 =\; & \theta_1 \left( \frac{k_1 (cl)^2}{I_2} \right) + \theta_2 \left( -\frac{k_1 (cl)^2}{I_2} + \frac{k_2 (dl)^2}{I_2} + \frac{x_{cm2} m_2 g}{I_2} \right) + \theta_3 \left( \frac{k_2 (dl)^2}{I_2} \right) \\
+\ddot{\theta}_3 =\; & \theta_2 \left( \frac{k_2 (dl)^2}{I_3} \right) + \theta_3 \left( -\frac{k_2 (dl)^2}{I_3} - \frac{x_{cm3} m_3 g}{I_3} \right)
+\end{aligned}
+\end{equation}
+
