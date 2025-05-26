@@ -1,25 +1,41 @@
-\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+\documentclass[11pt]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-
-\usepackage{graphicx}%
-\usepackage{multirow}%
-\usepackage{amsmath,amssymb,amsfonts}%
-\usepackage{amsthm}%
-\usepackage{mathrsfs}%
-\usepackage[title]{appendix}%
-\usepackage{xcolor}%
-\usepackage{textcomp}%
-\usepackage{manyfoot}%
-\usepackage{booktabs}%
-\usepackage{algorithm}%
-\usepackage{algorithmicx}%
-\usepackage{algpseudocode}%
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
 \usepackage{microtype}
 \usepackage{csquotes}
 \usepackage{hyperref}
+\usepackage{pgfplotstable}
+\usepackage[spanish]{cleveref}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{bm}
+\usepackage[sorting=none]{biblatex}
+\usepackage[title]{appendix}
+
+\pgfplotsset{compat=1.18}
+\pgfkeys{/pgf/number format/1000 sep={\,}}
+
+\bibliography{./ref.bib}
+
+\AtBeginDocument{\decimalpoint}
+\renewcommand{\arraystretch}{1.2}
+\sisetup{group-digits=true,
+  group-separator={\,},
+  separate-uncertainty}
 
 \hypersetup{
   colorlinks=true,
@@ -31,33 +47,40 @@
 }
 \urlstyle{same}
 
+\pgfplotstableread[col sep=comma, header=true]{
+  i, y_cm_i, m_i
+  1, 14.2, 600.8
+  2, 28.0, 1216.3
+  3, 14.0, 601.8
+}\mydata
+
+\title{\bfseries Modos Normales}
+\author{
+  Sebastián Rodríguez \and
+  Laura Torres \and
+  Julian Avila\\
+  \normalsize Física, Universidad Distrital Francisco José de Caldas
+}
+\date{\today}
+
 \begin{document}
-
-\title[Modos Normales]{\textbf{Modos Normales}}
-\author[1]{\fnm{Sebastián} \sur{Rodríguez}}
-\author[1]{\fnm{Laura} \sur{Torres}}
-\author[1]{\fnm{Julian} \sur{Avila}}
-\affil[1]{\orgdiv{Física}, \orgname{Universidad Distrital Francisco José de Caldas}}
-
-\abstract{a}
 
 \maketitle
 
+\begin{abstract}
+a
+\end{abstract}
+
 \input{./Sections/introduction.tex}
+\input{./Sections/methods.tex}
 
-\section{Métodos}%
-\input{./Sections/Metodos.tex}
-\label{sec:Métodos}
-
-\section{Resultados}%
+\section{Resultados}
 \label{sec:Resultados}
 
-\section{Discusión}%
+\section{Discusión}
 \label{sec:Discusión}
 
-\section{Conclusiones}%
+\section{Conclusiones}
 \label{sec:Conclusiones}
-
-\bibliography{ref}
 
 \end{document}
