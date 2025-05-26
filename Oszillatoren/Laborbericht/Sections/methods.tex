@@ -1,0 +1,297 @@
+\section{Ecuaciones de Movimiento}
+
+Para describir la din\'amica del sistema compuesto por tres p\'endulos
+f\'isicos, se establecen consideraciones iniciales que simplifican el
+an\'alisis y la deducci\'on de las ecuaciones de movimiento.
+Inicialmente, los p\'endulos se representan en sus puntos de
+equilibrio, donde los ejes de rotaci\'on est\'an separados por una
+distancia $a$, correspondiente a la longitud natural de los muelles.
+Este esquema se ilustra en la \cref{fig:esquema_equilibrio}.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{./Figures/system-diagram.pdf}
+  \caption{Esquema de los p\'endulos en equilibrio. La distancia
+  entre los ejes de rotaci\'on es $a$.}
+  \label{fig:esquema_equilibrio}
+\end{figure}
+
+Las ecuaciones de movimiento del sistema se obtienen mediante la
+aplicaci\'on de la sumatoria de torques, considerando tanto las
+contribuciones de los resortes como la de la fuerza gravitacional
+. Si bien los formalismos Lagrangiano y Hamiltoniano
+ofrecen un enfoque m\'as general y elegante para sistemas complejos,
+para el presente sistema de p\'endulos, la aplicaci\'on directa de
+la segunda ley de Newton para rotaci\'on (sumatoria de torques)
+resulta en un m\'etodo igualmente riguroso y conceptualmente claro
+para la derivaci\'on de las ecuaciones de movimiento.
+Es necesario, entonces, encontrar una expresi\'on para el torque
+gravitacional en funci\'on de cualquier \'angulo $\theta_i$, as\'i
+como una expresi\'on para las distancias del tipo $x_0 + \Delta x$,
+que representan la elongaci\'on de los resortes en funci\'on de los
+\'angulos $\theta_i$ y $\theta_{i\pm 1}$. Las barras se
+enumeran de izquierda a derecha como 1, 2 y 3, seg\'un se muestra en la
+\cref{fig:enumeracion_barras}.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Figures/Ilustración_sin_título 4.pdf}
+  \caption{Numeraci\'on de las barras del sistema de p\'endulos:
+  1 (izquierda), 2 (central), 3 (derecha).}
+  \label{fig:enumeracion_barras}
+\end{figure}
+
+Al desplazar las barras 1 y 2 de su posici\'on de equilibrio, se
+observa que la tangente de cada barra se desv\'ia un \'angulo
+$\theta_i$ del eje horizontal. Esta condici\'on permite
+construir un tri\'angulo rect\'angulo con las componentes $x_i$ e
+$y_i$ de la posici\'on del punto de aplicaci\'on de la fuerza
+el\'astica para cada barra, generalizada a cualquier fracci\'on de
+la longitud $l$, tal como se ilustra en la \cref{fig:triangulo_posicion}
+.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.8\linewidth]{Figures/Ilustración_sin_título 5.pdf}
+  \caption{Construcci\'on geom\'etrica para determinar la posici\'on
+  del punto de aplicaci\'on de la fuerza el\'astica en una barra.}
+  \label{fig:triangulo_posicion}
+\end{figure}
+
+Las coordenadas $x_k$ e $y_k$ para $k = 1, 2$ est\'an definidas como:
+\begin{align}
+  x_k &= c l \sin(\theta_{k}) \label{eq:xk} \\
+  y_k &= c l \cos(\theta_{k}) \label{eq:yk}
+\end{align}
+donde $c$ y $d$ son fracciones de la longitud de la barra $l$ que
+indican la posici\'on de los puntos de acople de los resortes.
+El tri\'angulo resultante est\'a definido por un \'angulo $\psi_1$,
+el cual cumple la relaci\'on $\beta_1 + \psi_1 = \theta_1$, donde
+$\beta_1$ corresponde al \'angulo entre la tangente de la barra 1 y
+la l\'inea recta que conecta los puntos de aplicaci\'on.
+A partir de este tri\'angulo, se obtiene la expresi\'on para la
+elongaci\'on del resorte entre las barras 1 y 2:
+\begin{equation}
+  x_{01} + \Delta x_{1} = \sqrt{(y_2 - y_1)^2 + (a + x_2 - x_1)^2}
+  \label{eq:elongacion1}
+\end{equation}
+con $x_{01}$ como la longitud natural del resorte.
+Y el \'angulo $\psi_1$ est\'a dado por:
+\begin{equation}
+  \psi_1 = \arctan\left( \frac{y_2 - y_1}{a - x_1 + x_2} \right)
+  \label{eq:psi1}
+\end{equation}
+De forma an\'aloga, para el resorte entre las barras 2 y 3, se
+utiliza un punto de aplicaci\'on $d l$, resultando en:
+\begin{align}
+  \psi_2 &= \arctan \left( \frac{y_4 - y_3}{a - x_3 + x_4} \right) \label{eq:psi2}, \\
+  x_{02} + \Delta x_{2} &= \sqrt{(y_4 - y_3)^2 + (a + x_4 - x_3)^2} \label{eq:elongacion2}
+\end{align}
+Donde para $j = 3, 4$, las coordenadas $x_j$ e $y_j$ son:
+\begin{align}
+  x_j &= d l \sin(\theta_{j}) \label{eq:xj} \\
+  y_j &= d l \cos(\theta_{j}) \label{eq:yj}
+\end{align}
+El torque gravitacional sobre cada barra $i$ est\'a dado por:
+\begin{equation}
+  \tau_{g_i} = y_{\text{cm}_i} \, m_i \, g \sin(\theta_i) \label{eq:tau_g}
+\end{equation}
+Donde $y_{\text{cm}_i}$ es la posici\'on del centro de masa de la
+barra $i$. Para los torques el\'asticos, se deben
+considerar los \'angulos $\beta_i$, definidos como:
+\begin{align}
+  \beta_1 + \psi_1 &= \theta_1, & \beta_2 + \psi_1 &= \theta_2, \label{eq:beta1_psi1}\\
+  \beta_3 + \psi_2 &= \theta_2, & \beta_4 + \psi_2 &= \theta_3 \label{eq:beta3_psi2}
+\end{align}
+Es importante notar que, debido a las distintas posiciones de
+aplicaci\'on de los resortes entre los pares de barras, aparecen
+cuatro \'angulos $\beta_i$, donde los \'indices 2 y 3 se refieren
+a la barra central. La sumatoria de torques para cada
+p\'endulo, considerando el sentido antihorario como positivo, resulta
+en las siguientes ecuaciones de movimiento:
+\begin{align}
+  \sum \tau_{m_1} &= c l k_1 (\Delta x_1) \cos(\beta_1) - m_1 g y_{\text{cm}_1} \sin(\theta_1) = I_1 \, \ddot{\theta}_1 \label{eq:tau_m1}, \\
+  \sum \tau_{m_2} &= d l k_2 (\Delta x_2) \cos(\beta_3) - c l k_1 (\Delta x_1) \cos(\beta_2) - m_2 g y_{\text{cm}_2} \sin(\theta_2) = I_2 \, \ddot{\theta}_2 \label{eq:tau_m2}, \\
+  \sum \tau_{m_3} &= -d l k_2 (\Delta x_2) \cos(\beta_4) + m_3 g y_{\text{cm}_3} \sin(\theta_3) = I_3 \, \ddot{\theta}_3 \label{eq:tau_m3}
+\end{align}
+
+\subsection*{Aproximaciones para \'Angulos Peque\~nos}
+
+Con el fin de obtener una soluci\'on anal\'itica aproximada que permita
+calcular las frecuencias naturales del sistema, se aplican
+las siguientes aproximaciones para \'angulos peque\~nos ($\theta \ll 1$ rad):
+\begin{align*}
+  \sin(\theta) &\approx \theta, \\
+  \cos(\theta) &\approx 1, \\
+  \tan(\theta) &\approx \theta.
+\end{align*}
+Aplicando estas aproximaciones, las coordenadas $x_k$ e $y_k$ se
+simplifican a:
+\begin{align*}
+  x_1 &= c l \theta_1, & x_2 &= c l \theta_2 \\
+  x_3 &= d l \theta_2, & x_4 &= d l \theta_3 \\
+  y_1 &= c l, & y_2 &= c l \\
+  y_3 &= d l, & y_4 &= d l
+\end{align*}
+Si se cumple la condici\'on de que las longitudes naturales de los
+resortes son iguales a la separaci\'on entre los ejes, es decir,
+$x_{01} = x_{02} = a$, las elongaciones de los resortes $\Delta x_1$
+y $\Delta x_2$ se simplifican a:
+\begin{align}
+  \Delta x_1 &= cl(\theta_2 - \theta_1) \label{eq:deltax1_approx}, \\
+  \Delta x_2 &= dl(\theta_3 - \theta_2) \label{eq:deltax2_approx}.
+\end{align}
+Adem\'as, si se asume que $\arctan(\psi_i) \approx \psi_i \approx 0$,
+lo que implica que la fuerza el\'astica act\'ua aproximadamente en
+la direcci\'on horizontal, entonces los \'angulos $\beta_i$ se
+aproximan a los \'angulos $\theta_i$ ($\beta_i \approx \theta_i$).
+Esto simplifica la sumatoria de torques a:
+\begin{align}
+  I_1 \ddot{\theta}_1 &= (cl)^2 k_1 (\theta_2 - \theta_1) - m_1 g y_{\text{cm}_1} \theta_1 \label{eq:eq_mov_lin1}, \\
+  I_2 \ddot{\theta}_2 &= (dl)^2 k_2 (\theta_3 - \theta_2) - (cl)^2 k_1 (\theta_2 - \theta_1) - m_2 g y_{\text{cm}_2} \theta_2 \label{eq:eq_mov_lin2}, \\
+  I_3 \ddot{\theta}_3 &= -(dl)^2 k_2 (\theta_3 - \theta_2) + m_3 g y_{\text{cm}_3} \theta_3 \label{eq:eq_mov_lin3}.
+\end{align}
+Finalmente, el sistema de ecuaciones diferenciales lineales queda
+expresado como:
+\begin{align}
+  \ddot{\theta}_1 &=\; \theta_1 \left( \frac{(cl)^2 k_{1} - y_{\text{cm}_1} m_1 g}{I_1} \right) + \theta_2 \left( -\frac{k_1 (cl)^2}{I_1} \right) \label{eq:eom1} \\
+  \ddot{\theta}_2 &=\; \theta_1 \left( \frac{k_1 (cl)^2}{I_2} \right) + \theta_2 \left( \frac{k_2 (dl)^2 - k_1 (cl)^2 + y_{\text{cm}_2} m_2 g}{I_2} \right) + \theta_3 \left( -\frac{k_2 (dl)^2}{I_2} \right) \label{eq:eom2} \\
+  \ddot{\theta}_3 &=\; \theta_2 \left( -\frac{k_2 (dl)^2}{I_3} \right) + \theta_3 \left( \frac{k_2 (dl)^2 - y_{\text{cm}_3} m_3 g}{I_3} \right) \label{eq:eom3}
+\end{align}
+Estas ecuaciones forman un sistema lineal de ecuaciones
+diferenciales ordinarias acopladas, que pueden ser presentadas
+como una ecuaci\'on matricial \cref{eq:matrix-form} donde
+$\bm{M}$, $\bm{K}$ y $\bm{\Theta}$ representan una matriz cuadrada
+diagonal con los t\'erminos de inercia, una matriz cuadrada con los
+t\'erminos de acople, y un vector columna con las coordenadas
+angulares, respectivamente.
+\begin{equation}
+  \mathbf{M} \ddot{\bm{\Theta}} + \mathbf{K} \bm{\Theta} = \mathbf{0}
+  \label{eq:matrix-form}
+\end{equation}
+Este sistema linealizado permite determinar las frecuencias
+naturales del sistema al resolver el problema de valores propios
+asociado.
+
+\subsection*{Modos normales}
+
+A partir de la ecuaci\'on en forma matricial \cref{eq:matrix-form} se
+lleva a un problema de valores propios para determinar los modos
+normales. Esto se logra con la posibilidad de invertir la matriz con
+los t\'erminos inerciales e identificar la segunda derivada como el
+operador:
+\begin{equation}
+  \mathbf{D}^2_t \bm{\Theta} = - \mathbf{\Omega} \bm{\Theta}
+\label{eq:eigenproblem}
+\end{equation}
+donde $\mathbf{D}^2_t$ representa el operador de la segunda derivada
+temporal y $\mathbf{\Omega} = \mathbf{M}^{-1}\mathbf{K}$ es la matriz
+din\'amica del sistema. Dada la complejidad del c\'alculo anal\'itico
+para un sistema de tres grados de libertad, se emplea una soluci\'on
+num\'erica usando la librer\'ia de Python SciPy para determinar
+las frecuencias de los modos normales y sus correspondientes vectores
+propios.
+
+\section{Metodolog\'ia Experimental}
+
+La metodolog\'ia experimental se estructur\'o en varias etapas
+fundamentales: dise\~no y construcci\'on del montaje,
+caracterizaci\'on de sus componentes y adquisici\'on de datos
+mediante sensores angulares.
+
+\subsection*{Construcci\'on del Montaje}
+
+Para la construcci\'on del sistema se utilizaron tres barras
+met\'alicas de alta densidad, lo que contribuye a la rigidez del
+sistema y a una mejor definici\'on de su centro de masa
+. Las barras laterales tienen una longitud
+$l/2 = \qty{28.0(1)}{\centi\metre}$, mientras que la barra central
+tiene una longitud $l = \qty{56.0(1)}{\centi\metre}$.
+Las masas y las posiciones de los centros de masa de cada barra
+fueron determinadas experimentalmente y se resumen en la
+\cref{tab:parametros}. La posici\'on del centro de masa,
+$y_{\text{cm},i}$, se mide desde el punto de pivote de cada p\'endulo.
+
+\begin{table}[htbp!]
+  \centering
+  \caption{Par\'ametros f\'isicos de las barras empleadas en el montaje.}
+  \label{tab:parametros}
+  \begin{tabular}{ccc}
+    \toprule
+    P\'endulo ($i$) & $y_{\text{cm},i}$ [\si{\centi\metre}] & $m_i$ [\si{\gram}] \\
+    \midrule
+    1 & 14.2  & 600.8  \\
+    2 & 28.0  & 1216.3  \\
+    3 & 14.0  & 601.8  \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Las barras fueron perforadas para permitir m\'ultiples puntos de
+acople de resortes. La \cref{fig:barras} muestra las barras
+preparadas para el montaje.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.6\linewidth]{Figures/metal-bars.jpeg}
+  \caption{Barras met\'alicas preparadas para el montaje de los
+  p\'endulos.}
+  \label{fig:barras}
+\end{figure}
+
+\subsection*{Medici\'on de la Constante El\'astica}
+
+La constante el\'astica de los resortes ($k_1$ y $k_2$) se
+determin\'o mediante la aplicaci\'on de masas conocidas y el
+registro del desplazamiento resultante. Utilizando
+una regresi\'on lineal de los datos de fuerza versus elongaci\'on,
+se obtuvieron los siguientes valores:
+
+\begin{itemize}
+  \item $k_1 = \qty{3.04(4)}{\N\per\m}$
+  \item $k_2 = \qty{3.32(6)}{\N\per\m}$
+\end{itemize}
+El proceso de determinaci\'on de la constante el\'astica mediante
+regresi\'on lineal se ilustra en la \cref{fig:regresion}.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.75\linewidth]{Figures/springs-plot.pdf}
+  \caption{Determinaci\'on de la constante el\'astica de los resortes
+  mediante regresi\'on lineal de fuerza vs. desplazamiento.}
+  \label{fig:regresion}
+\end{figure}
+
+\subsection{Integraci\'on del Sistema de Medici\'on}
+
+Para registrar los desplazamientos angulares $\theta_i(t)$ de
+cada p\'endulo, se integraron sensores angulares rotacionales Cassy
+en cada punto de pivote. Las barras se fijaron a las ruedas del
+sensor utilizando alambre dulce. Aunque esta fijaci\'on
+podr\'ia introducir un peque\~no juego, se procur\'o minimizarlo para
+obtener mediciones precisas. La \cref{fig:montaje} muestra el
+montaje experimental completo.
+
+\begin{figure}[htbp!]
+  \centering
+  \includegraphics[width=0.75\textwidth]{Figures/set-up.jpeg}
+  \caption{Montaje experimental completo del sistema de tres
+  p\'endulos acoplados con sensores angulares Cassy integrados.}
+  \label{fig:montaje}
+\end{figure}
+
+\subsection*{Toma de Datos}
+
+Se realizaron experimentos bajo cinco configuraciones distintas
+de acoplamiento (ver \cref{fig:configuraciones}) y tres tipos de
+condiciones iniciales:
+\begin{itemize}
+  \item (001): Desplazamiento \'unicamente del p\'endulo 3.
+  \item (010): Desplazamiento \'unicamente del p\'endulo 2.
+  \item (101): Desplazamiento sim\'etrico de los p\'endulos 1 y 3.
+\end{itemize}
+Cada configuraci\'on fue registrada durante aproximadamente 30
+segundos para capturar m\'ultiples oscilaciones.
+Los datos fueron almacenados digitalmente para su posterior
+an\'alisis y comparaci\'on con los resultados te\'oricos de los
+modos normales de oscilaci\'on.

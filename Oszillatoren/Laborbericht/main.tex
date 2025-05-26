@@ -20,6 +20,15 @@
 \usepackage{microtype}
 \usepackage{csquotes}
 \usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{siunitx}
+\usepackage{bm}
+
+\AtBeginDocument{\decimalpoint}
+\renewcommand{\arraystretch}{1.2}
+\sisetup{group-digits=true,
+  group-separator={\,},
+  separate-uncertainty}
 
 \hypersetup{
   colorlinks=true,
@@ -45,9 +54,7 @@
 
 \input{./Sections/introduction.tex}
 
-\section{Métodos}%
-\input{./Sections/Metodos.tex}
-\label{sec:Métodos}
+\input{./Sections/methods.tex}
 
 \section{Resultados}%
 \label{sec:Resultados}
