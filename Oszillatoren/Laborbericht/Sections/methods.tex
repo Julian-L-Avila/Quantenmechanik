@@ -47,8 +47,7 @@ $\theta_i$ del eje horizontal. Esta condici\'on permite
 construir un tri\'angulo rect\'angulo con las componentes $x_i$ e
 $y_i$ de la posici\'on del punto de aplicaci\'on de la fuerza
 el\'astica para cada barra, generalizada a cualquier fracci\'on de
-la longitud $l$, tal como se ilustra en la \cref{fig:triangulo_posicion}
-.
+la longitud $l$, tal como se ilustra en la \cref{fig:triangulo_posicion}.
 
 \begin{figure}[htbp!]
   \centering
@@ -199,7 +198,7 @@ fundamentales: dise\~no y construcci\'on del montaje,
 caracterizaci\'on de sus componentes y adquisici\'on de datos
 mediante sensores angulares.
 
-\subsection{Construcci\'on del Montaje}
+\subsection*{Construcci\'on del Montaje}
 
 Para la construcci\'on del sistema se utilizaron tres barras
 met\'alicas de alta densidad, lo que contribuye a la rigidez del
@@ -210,9 +209,9 @@ posee una longitud de $l = \qty{56.0(1)}{\centi\metre}$.
 Las masas y las posiciones de los centros de masa de cada barra
 fueron determinadas experimentalmente y se resumen en la
 \cref{tab:bars-dat}. La posici\'on del centro de masa,
-$y_{\text{cm},i}$, se mide desde el punto de pivote de cada p\'endulo.
+$y_{\text{cm}_i}$, se mide desde el punto de pivote de cada p\'endulo.
 
-\begin{table}[htbp!]
+\begin{table*}[htbp!]
   \caption{Parámetros físicos de las barras empleadas en el montaje.La incertidumbre para la posición del centro de masa (\(y_{\text{cm}_i}\)) es de \qty{0.1}{\centi\metre} y para la masa (\(m_i\)) es de \qty{0.1}{\gram}.}
   \centering
   \pgfplotstabletypeset[
@@ -246,7 +245,7 @@ $y_{\text{cm},i}$, se mide desde el punto de pivote de cada p\'endulo.
   }
   ]\mydata
   \label{tab:bars-dat}
-\end{table}
+\end{table*}
 
 Las barras fueron perforadas en m\'ultiples puntos para permitir
 diversas configuraciones de acople de los resortes. La
@@ -261,7 +260,7 @@ montaje.
   \label{fig:barras}
 \end{figure}
 
-\subsection{Medici\'on de la Constante El\'astica}
+\subsection*{Medici\'on de la Constante El\'astica}
 
 La constante el\'astica de los resortes empleados ($k_1$ y $k_2$) se
 determin\'o experimentalmente. Se aplicaron masas conocidas a cada
@@ -285,7 +284,7 @@ ilustra en la \cref{fig:regresion}.
   \label{fig:regresion}
 \end{figure}
 
-\subsection{Integraci\'on del Sistema de Medici\'on}
+\subsection*{Integraci\'on del Sistema de Medici\'on}
 
 Para registrar los desplazamientos angulares $\theta_i(t)$ de
 cada p\'endulo, se integraron sensores angulares rotacionales
@@ -306,7 +305,7 @@ completo con los sensores integrados.
   \label{fig:montaje}
 \end{figure}
 
-\subsection{Toma de Datos y Configuraciones Experimentales}
+\subsection*{Toma de Datos y Configuraciones Experimentales}
 
 Se realizaron mediciones bajo cinco configuraciones distintas de
 acoplamiento de resortes, esquematizadas en la \cref{fig:configs}.
@@ -327,43 +326,27 @@ de los modos normales de oscilaci\'on.
 
 \begin{figure}[htbp!]
   \centering
-  \begin{subfigure}[b]{0.3\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{./Figures/15.pdf}
-    \caption{Configuraci\'on 1-5}
-    \label{fig:conf-1-5}
-  \end{subfigure}
+  \subfloat[Configuraci\'on 1-5\label{fig:conf-1-5}]{
+    \includegraphics[width=0.3\textwidth]{./Figures/15.pdf}
+  }
   \hfill
-  \begin{subfigure}[b]{0.3\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{./Figures/16.pdf}
-    \caption{Configuraci\'on 1-6}
-    \label{fig:conf-1-6}
-  \end{subfigure}
+  \subfloat[Configuraci\'on 1-6\label{fig:conf-1-6}]{
+    \includegraphics[width=0.3\textwidth]{./Figures/16.pdf}
+  }
   \hfill
-  \begin{subfigure}[b]{0.3\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{./Figures/26.pdf}
-    \caption{Configuraci\'on 2-6}
-    \label{fig:conf-2-6}
-  \end{subfigure}
+  \subfloat[Configuraci\'on 2-6\label{fig:conf-2-6}]{
+    \includegraphics[width=0.3\textwidth]{./Figures/26.pdf}
+  }
 
-  \vspace{0.5cm} % Espacio vertical entre filas de subfiguras
+  \vspace{0.5cm}
 
-  \begin{subfigure}[b]{0.45\textwidth} % Ajustado para centrar mejor dos figuras
-    \centering
-    \includegraphics[width=0.6\linewidth]{./Figures/46.pdf} % Ajustado para que no sea tan grande
-    \caption{Configuraci\'on 4-6}
-    \label{fig:conf-4-6}
-  \end{subfigure}
-  \hfill % Para espaciar igualmente si hubiera otra
-  \begin{subfigure}[b]{0.45\textwidth} % Ajustado para centrar mejor dos figuras
-    \centering
-    \includegraphics[width=0.6\linewidth]{./Figures/66.pdf} % Ajustado para que no sea tan grande
-    \caption{Configuraci\'on 6-6}
-    \label{fig:conf-6-6}
-  \end{subfigure}
-
+  \subfloat[Configuraci\'on 4-6\label{fig:conf-4-6}]{
+    \includegraphics[width=0.3\textwidth]{./Figures/46.pdf}
+  }
+  \hspace{0.1\textwidth}
+  \subfloat[Configuraci\'on 6-6\label{fig:conf-6-6}]{
+    \includegraphics[width=0.3\textwidth]{./Figures/66.pdf}
+  }
   \caption{Representaci\'on esquem\'atica de las cinco configuraciones de
     acoplamiento de resortes estudiadas. La nomenclatura 'X-Y' en
     cada subfigura (e.g., 1-5) indica los orificios espec\'ificos
@@ -371,3 +354,49 @@ de los modos normales de oscilaci\'on.
   los extremos de los resortes.}
   \label{fig:configs}
 \end{figure}
+
+\subsection*{Fundamento Te\'orico del An\'alisis Espectral}
+
+El movimiento de un sistema lineal (o linealizado, como en la
+aproximaci\'on de peque\~nas oscilaciones) con m\'ultiples grados de
+libertad puede describirse como una superposici\'on de sus
+modos normales de oscilaci\'on. Cada modo normal es un patr\'on de
+movimiento colectivo en el que todas las partes del sistema oscilan
+sinusoidalmente con la misma frecuencia caracter\'istica y una fase
+relativa constante. Estas frecuencias son propiedades intr\'insecas
+del sistema, determinadas por sus par\'ametros f\'isicos (masas,
+longitudes, constantes de acoplamiento, etc.).
+
+El Teorema de Fourier establece que cualquier se\~nal
+peri\'odica (o una se\~nal de duraci\'on finita, como los datos
+experimentales) puede representarse como una suma de funciones
+sinusoidales (senos y cosenos) de diferentes frecuencias,
+amplitudes y fases. La Transformada de Fourier es la
+herramienta matem\'atica que formaliza esta descomposici\'on,
+mapeando la se\~nal del dominio del tiempo al dominio de la
+frecuencia. Al aplicar la Transformada de Fourier a una se\~nal de
+movimiento como $\theta(t)$, se obtiene su espectro de
+frecuencias, el cual revela la ``cantidad'' (amplitud o potencia)
+de cada componente frecuencial presente en la se\~nal original \cite{Stein2003}.
+
+Cuando el sistema de p\'endulos acoplados oscila, su movimiento
+angular $\theta_i(t)$ es, en esencia, una mezcla de las
+oscilaciones de sus modos normales. Por lo tanto, las frecuencias
+que aparecen con mayor amplitud en el espectro de Fourier de
+$\theta_i(t)$ corresponden directamente a las frecuencias
+naturales de estos modos normales. La Transformada R\'apida de
+Fourier (FFT) es simplemente un algoritmo computacionalmente
+eficiente para calcular la Transformada Discreta de Fourier (DFT)
+de una se\~nal muestreada digitalmente, como la obtenida de los
+sensores angulares. De esta manera, la FFT permite identificar
+experimentalmente las frecuencias con las que el sistema
+``prefiere'' oscilar, que son precisamente las frecuencias de sus
+modos normales.
+
+El procedimiento se llev\'o a cabo utilizando herramientas
+computacionales basadas en Python. Espec\'ificamente, se emple\'o la
+funci\'on `fft' del m\'odulo `numpy.fft' perteneciente a la
+biblioteca NumPy. Esta funci\'on calcula los coeficientes complejos
+de la Transformada Discreta de Fourier (DFT) de la se\~nal angular
+muestreada. La magnitud al cuadrado de estos coeficientes
+proporciona el espectro de potencias de la se\~nal.
