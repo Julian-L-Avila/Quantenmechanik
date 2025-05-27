@@ -1,9 +1,8 @@
-\documentclass[11pt]{article}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-\usepackage[letterpaper, margin=1in]{geometry}
 \usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{amsmath,amssymb,amsfonts}
@@ -21,15 +20,11 @@
 \usepackage{pgfplotstable}
 \usepackage[spanish]{cleveref}
 \usepackage{siunitx}
-\usepackage{subcaption}
+\usepackage{subfig}
 \usepackage{bm}
-\usepackage[sorting=none]{biblatex}
-\usepackage[title]{appendix}
 
 \pgfplotsset{compat=1.18}
 \pgfkeys{/pgf/number format/1000 sep={\,}}
-
-\bibliography{./ref.bib}
 
 \AtBeginDocument{\decimalpoint}
 \renewcommand{\arraystretch}{1.2}
@@ -54,14 +49,11 @@
   3, 14.0, 601.8
 }\mydata
 
-\title{\bfseries Modos Normales}
-\author{
-  Sebastián Rodríguez \and
-  Laura Torres \and
-  Julian Avila\\
-  \normalsize Física, Universidad Distrital Francisco José de Caldas
-}
-\date{\today}
+\title[Modos Normales]{\textbf{Modos Normales}}
+\author[1]{\fnm{Sebastián} \sur{Rodríguez}}
+\author[1]{\fnm{Laura} \sur{Torres}}
+\author[1]{\fnm{Julian} \sur{Avila}}
+\affil[1]{\orgdiv{Física}, \orgname{Universidad Distrital Francisco José de Caldas}}
 
 \begin{document}
 
@@ -82,5 +74,7 @@ a
 
 \section{Conclusiones}
 \label{sec:Conclusiones}
+
+\bibliography{ref}
 
 \end{document}
