@@ -148,14 +148,14 @@ Esto simplifica la sumatoria de torques a:
 \begin{align}
   I_1 \ddot{\theta}_1 &= (cl)^2 k_1 (\theta_2 - \theta_1) - m_1 g y_{\text{cm}_1} \theta_1 \label{eq:eq_mov_lin1}, \\
   I_2 \ddot{\theta}_2 &= (dl)^2 k_2 (\theta_3 - \theta_2) - (cl)^2 k_1 (\theta_2 - \theta_1) - m_2 g y_{\text{cm}_2} \theta_2 \label{eq:eq_mov_lin2}, \\
-  I_3 \ddot{\theta}_3 &= -(dl)^2 k_2 (\theta_3 - \theta_2) + m_3 g y_{\text{cm}_3} \theta_3 \label{eq:eq_mov_lin3}.
+  I_3 \ddot{\theta}_3 &= -(dl)^2 k_2 (\theta_3 - \theta_2) - m_3 g y_{\text{cm}_3} \theta_3 \label{eq:eq_mov_lin3}.
 \end{align}
 Finalmente, el sistema de ecuaciones diferenciales lineales queda
 expresado como:
 \begin{align}
-  \ddot{\theta}_1 &=\; \theta_1 \left( \frac{(cl)^2 k_{1} - y_{\text{cm}_1} m_1 g}{I_1} \right) + \theta_2 \left( -\frac{k_1 (cl)^2}{I_1} \right) \label{eq:eom1} \\
-  \ddot{\theta}_2 &=\; \theta_1 \left( \frac{k_1 (cl)^2}{I_2} \right) + \theta_2 \left( \frac{k_2 (dl)^2 - k_1 (cl)^2 + y_{\text{cm}_2} m_2 g}{I_2} \right) + \theta_3 \left( -\frac{k_2 (dl)^2}{I_2} \right) \label{eq:eom2} \\
-  \ddot{\theta}_3 &=\; \theta_2 \left( -\frac{k_2 (dl)^2}{I_3} \right) + \theta_3 \left( \frac{k_2 (dl)^2 - y_{\text{cm}_3} m_3 g}{I_3} \right) \label{eq:eom3}
+  \ddot{\theta}_1 &=\; -\theta_1 \left( \frac{(cl)^2 k_{1} + y_{\text{cm}_1} m_1 g}{I_1} \right) + \theta_2 \left( \frac{k_1 (cl)^2}{I_1} \right) \label{eq:eom1} \\
+  \ddot{\theta}_2 &=\; \theta_1 \left( \frac{k_1 (cl)^2}{I_2} \right) - \theta_2 \left( \frac{k_2 (dl)^2 + k_1 (cl)^2 + y_{\text{cm}_2} m_2 g}{I_2} \right) + \theta_3 \left( \frac{k_2 (dl)^2}{I_2} \right) \label{eq:eom2} \\
+  \ddot{\theta}_3 &=\; \theta_2 \left( \frac{k_2 (dl)^2}{I_3} \right) - \theta_3 \left( \frac{k_2 (dl)^2 + y_{\text{cm}_3} m_3 g}{I_3} \right) \label{eq:eom3}
 \end{align}
 Estas ecuaciones forman un sistema lineal de ecuaciones
 diferenciales ordinarias acopladas, que pueden ser presentadas
@@ -172,7 +172,7 @@ Este sistema linealizado permite determinar las frecuencias
 naturales del sistema al resolver el problema de valores propios
 asociado.
 
-\subsection*{Modos normales}
+\subsection*{Modos Normales}
 
 A partir de la ecuaci\'on en forma matricial \cref{eq:matrix-form} se
 lleva a un problema de valores propios para determinar los modos
@@ -207,12 +207,15 @@ Las barras laterales tienen una longitud de
 $l/2 = \qty{28.0(1)}{\centi\metre}$, mientras que la barra central
 posee una longitud de $l = \qty{56.0(1)}{\centi\metre}$.
 Las masas y las posiciones de los centros de masa de cada barra
-fueron determinadas experimentalmente y se resumen en la
+fueron determinadas experimentalmente y se resumen en el
 \cref{tab:bars-dat}. La posici\'on del centro de masa,
 $y_{\text{cm}_i}$, se mide desde el punto de pivote de cada p\'endulo.
 
 \begin{table*}[htbp!]
-  \caption{Parámetros físicos de las barras empleadas en el montaje.La incertidumbre para la posición del centro de masa (\(y_{\text{cm}_i}\)) es de \qty{0.1}{\centi\metre} y para la masa (\(m_i\)) es de \qty{0.1}{\gram}.}
+  \caption{Parámetros físicos de las barras empleadas en el montaje.
+    La incertidumbre para la posición del centro de masa (\(y_{\text{cm}_i}\)) es
+    de \qty{0.1}{\centi\metre} y para la masa (\(m_i\)) es de \qty{0.1}{\gram}.
+  }
   \centering
   \pgfplotstabletypeset[
   col sep=comma,
@@ -312,7 +315,7 @@ acoplamiento de resortes, esquematizadas en la \cref{fig:configs}.
 Para cada configuraci\'on, se investigaron tres tipos de
 condiciones iniciales para excitar el sistema:
 \begin{itemize}
-  \item (001): Desplazamiento inicial \'unicamente del p\'endulo 3.
+  \item (100): Desplazamiento inicial \'unicamente del p\'endulo 1.
   \item (010): Desplazamiento inicial \'unicamente del p\'endulo 2.
   \item (101): Desplazamiento inicial sim\'etrico de los p\'endulos
     1 y 3 (en la misma direcci\'on y amplitud).
@@ -326,30 +329,30 @@ de los modos normales de oscilaci\'on.
 
 \begin{figure}[htbp!]
   \centering
-  \subfloat[Configuraci\'on 1-5\label{fig:conf-1-5}]{
-    \includegraphics[width=0.3\textwidth]{./Figures/15.pdf}
+  \subfloat[Configuraci\'on 5-1\label{fig:conf-1-5}]{
+    \scalebox{-1}[1]{\includegraphics[width=0.3\textwidth]{./Figures/15.pdf}}
   }
   \hfill
-  \subfloat[Configuraci\'on 1-6\label{fig:conf-1-6}]{
-    \includegraphics[width=0.3\textwidth]{./Figures/16.pdf}
+  \subfloat[Configuraci\'on 6-1\label{fig:conf-1-6}]{
+    \scalebox{-1}[1]{\includegraphics[width=0.3\textwidth]{./Figures/16.pdf}}
   }
   \hfill
-  \subfloat[Configuraci\'on 2-6\label{fig:conf-2-6}]{
-    \includegraphics[width=0.3\textwidth]{./Figures/26.pdf}
+  \subfloat[Configuraci\'on 6-2\label{fig:conf-2-6}]{
+    \scalebox{-1}[1]{\includegraphics[width=0.3\textwidth]{./Figures/26.pdf}}
   }
 
   \vspace{0.5cm}
 
-  \subfloat[Configuraci\'on 4-6\label{fig:conf-4-6}]{
-    \includegraphics[width=0.3\textwidth]{./Figures/46.pdf}
+  \subfloat[Configuraci\'on 6-4\label{fig:conf-4-6}]{
+    \scalebox{-1}[1]{\includegraphics[width=0.3\textwidth]{./Figures/46.pdf}}
   }
   \hspace{0.1\textwidth}
   \subfloat[Configuraci\'on 6-6\label{fig:conf-6-6}]{
-    \includegraphics[width=0.3\textwidth]{./Figures/66.pdf}
+    \scalebox{-1}[1]{\includegraphics[width=0.3\textwidth]{./Figures/66.pdf}}
   }
   \caption{Representaci\'on esquem\'atica de las cinco configuraciones de
     acoplamiento de resortes estudiadas. La nomenclatura 'X-Y' en
-    cada subfigura (e.g., 1-5) indica los orificios espec\'ificos
+    cada subfigura (e.g., 5-1) indica los orificios espec\'ificos
     (numerados) en los p\'endulos adyacentes donde se anclaron
   los extremos de los resortes.}
   \label{fig:configs}

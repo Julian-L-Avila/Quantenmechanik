@@ -22,6 +22,7 @@
 \usepackage{siunitx}
 \usepackage{subfig}
 \usepackage{bm}
+\usepackage{multirow}
 
 \pgfplotsset{compat=1.18}
 \pgfkeys{/pgf/number format/1000 sep={\,}}
@@ -49,6 +50,53 @@
   3, 14.0, 601.8
 }\mydata
 
+\pgfplotstableread[col sep=comma, header=true]{
+  config, mode, freq1, freq2, freq3
+  \multirow{3}{*}{5-1}, 100, 1.2715, 0.8408, 0.0205
+  , 010, 0.8308, 0.8308, 0.8308
+  , 101, 1.2771, 0.8375, 1.1934
+  \multirow{3}{*}{6-1}, 100, 1.3147, 0.8383, 1.2003
+  , 010, 0.8415, 0.8415, 0.8415
+  , 101, 1.3144, 0.8348, 1.1901
+  \multirow{3}{*}{6-2}, 100, 1.3303, 0.8455, 1.2288
+  , 010, 0.8378, 0.8378, 0.8378
+  , 101, 1.3189, 0.8402, 1.2114
+  \multirow{3}{*}{6-4}, 100, 1.3263, 0.8547, 1.3263
+  , 010, 0.8498, 0.8498, 0.8498
+  , 101, 1.3250, 0.8505, 1.2713
+  \multirow{3}{*}{6-6}, 100, 1.3144, 0.8552, 1.3303
+  , 010, 0.8519, 0.8519, 0.8519
+  , 101, 1.3147, 0.8574, 1.3474
+}\datafreq
+
+\pgfplotstableread[col sep=comma, header=true]{
+  config, f1, f2, f3
+  5-1, 1.1669, 0.8305, 1.2647
+  6-1, 1.1669, 0.8343, 1.3120
+  6-2, 1.1815, 0.8366, 1.3120
+  6-4, 1.2394, 0.8437, 1.3122
+  6-6, 1.3100, 0.8513, 1.3356
+}\theoric
+
+\pgfplotstableread[col sep=comma, header=true]{
+  config, fe, ft, err
+  \multirow{3}{*}{5-1}, 0.8308, 0.8305, 0.0361
+  , 1.1934, 1.1669, 2.2205
+  , 1.2771, 1.2647, 0.9709
+  \multirow{3}{*}{6-1}, 0.8415, 0.8343, 0.8556
+  , 1.1901, 1.1669, 1.9494
+  , 1.3144, 1.3120, 0.1826
+  \multirow{3}{*}{6-2}, 0.8378, 0.8366, 0.1432
+  , 1.2114, 1.1815, 2.4682
+  , 1.3189, 1.3120, 0.5232
+  \multirow{3}{*}{6-4}, 0.8498, 0.8437, 0.7178
+  , 1.2713, 1.2394, 2.5092
+  , 1.3250, 1.3122, 0.9660
+  \multirow{3}{*}{6-6}, 0.8519, 0.8513, 0.0704
+  , 1.3147, 1.3100, 0.3575
+  , 1.3474, 1.3356, 0.8758
+}\comparison
+
 \title[Modos Normales]{\textbf{Modos Normales}}
 \author[1]{\fnm{Sebastián} \sur{Rodríguez}}
 \author[1]{\fnm{Laura} \sur{Torres}}
@@ -65,9 +113,7 @@ a
 
 \input{./Sections/introduction.tex}
 \input{./Sections/methods.tex}
-
-\section{Resultados}
-\label{sec:Resultados}
+\input{./Sections/results.tex}
 
 \section{Discusión}
 \label{sec:Discusión}
