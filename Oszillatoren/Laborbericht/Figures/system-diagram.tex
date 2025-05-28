@@ -74,14 +74,14 @@
 
 	% Springs between masses
 	% Spring from hole 1 of M1 and M2
-	\coordinate (S12a) at (P1 |- H1);
-	\coordinate (S12b) at (P2 |- H1);
+	\coordinate (S12a) at (P1 |- H4);
+	\coordinate (S12b) at (P2 |- H4);
 	\draw[decorate, decoration={coil, aspect=0.6, segment length=4pt, amplitude=3pt}]
 		(S12a) -- (S12b);
 
 	% Spring from hole 5 of M2 and M3
-	\coordinate (S23a) at (P2 |- H5);
-	\coordinate (S23b) at (P3 |- H5);
+	\coordinate (S23a) at (P2 |- H1);
+	\coordinate (S23b) at (P3 |- H1);
 	\draw[decorate, decoration={coil, aspect=0.6, segment length=4pt, amplitude=3pt}]
 		(S23a) -- (S23b);
 
