@@ -12,7 +12,12 @@ Este esquema se ilustra en la \cref{fig:esquema_equilibrio}.
   \centering
   \includegraphics[width=0.8\linewidth]{./Figures/system-diagram.pdf}
   \caption{Esquema de los p\'endulos en equilibrio. La distancia
-  entre los ejes de rotaci\'on es $a$.}
+    entre los ejes de rotaci\'on es $a$, representando la longitud
+    natural de los muelles. La longitud del p\'endulo central es $l$.
+    Los puntos de acople de los resortes est\'an ubicados a distancias
+    $cl$ y $dl$ desde el pivote, para los acoples entre los
+    p\'endulos 1 y 2, y entre el 2 y 3, respectivamente.
+  }
   \label{fig:esquema_equilibrio}
 \end{figure}
 
@@ -153,7 +158,7 @@ Esto simplifica la sumatoria de torques a:
 Finalmente, el sistema de ecuaciones diferenciales lineales queda
 expresado como:
 \begin{align}
-  \ddot{\theta}_1 &=\; -\theta_1 \left( \frac{(cl)^2 k_{1} + y_{\text{cm}_1} m_1 g}{I_1} \right) + \theta_2 \left( \frac{k_1 (cl)^2}{I_1} \right) \label{eq:eom1} \\
+  \ddot{\theta}_1 &=\; -\theta_1 \left( \frac{k_1 (cl)^2 + y_{\text{cm}_1} m_1 g}{I_1} \right) + \theta_2 \left( \frac{k_1 (cl)^2}{I_1} \right) \label{eq:eom1} \\
   \ddot{\theta}_2 &=\; \theta_1 \left( \frac{k_1 (cl)^2}{I_2} \right) - \theta_2 \left( \frac{k_2 (dl)^2 + k_1 (cl)^2 + y_{\text{cm}_2} m_2 g}{I_2} \right) + \theta_3 \left( \frac{k_2 (dl)^2}{I_2} \right) \label{eq:eom2} \\
   \ddot{\theta}_3 &=\; \theta_2 \left( \frac{k_2 (dl)^2}{I_3} \right) - \theta_3 \left( \frac{k_2 (dl)^2 + y_{\text{cm}_3} m_3 g}{I_3} \right) \label{eq:eom3}
 \end{align}
