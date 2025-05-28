@@ -1,24 +1,37 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish]{babel}
-
-\usepackage[margin=2.5cm]{geometry}
-\usepackage{microtype}
 \usepackage{graphicx}
-\usepackage{amsmath,amssymb}
-\usepackage{physics}
-\usepackage{csquotes}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
 \usepackage{xcolor}
+\usepackage{textcomp}
 \usepackage{booktabs}
-\usepackage{enumitem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{microtype}
+\usepackage{csquotes}
 \usepackage{hyperref}
-\usepackage{authblk}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
+\usepackage{pgfplotstable}
+\usepackage[spanish]{cleveref}
+\usepackage{siunitx}
+\usepackage{subfig}
+\usepackage{bm}
+\usepackage{multirow}
 
-\usepackage[backend=biber,style=numeric]{biblatex}
-\addbibresource{./references-pre-project.bib}
+\pgfplotsset{compat=1.18}
+\pgfkeys{/pgf/number format/1000 sep={\,}}
+
+\AtBeginDocument{\decimalpoint}
+\renewcommand{\arraystretch}{1.2}
+\sisetup{group-digits=true,
+  group-separator={\,},
+  separate-uncertainty}
 
 \hypersetup{
   colorlinks=true,
@@ -26,29 +39,111 @@
   urlcolor=blue,
   pdftitle={Report},
   pdfauthor={Rodriguez S, Torres L, Avila J},
-  pdfsubject={Couple Oscillators},
+  pdfsubject={Coupled Oscillators},
 }
 \urlstyle{same}
 
-\title{\textbf{Couple Oscillators}}
-\author{Rodriguez S}
-\author{Torres L}
-\author{Avila J}
-\affil{Universidad Distrital Francisco José de Caldas}
+\pgfplotstableread[col sep=comma, header=true]{
+  i, y_cm_i, m_i
+  1, 14.2, 600.8
+  2, 28.0, 1216.3
+  3, 14.0, 601.8
+}\mydata
 
-\fancyhf{}
-\lhead{\textit{Osciladores}}
-\rhead{\textit{Rodriguez, Torres, Avila}}
-\rfoot{Pagina \thepage\ de \pageref{LastPage}}
-\pagestyle{fancy}
+\pgfplotstableread[col sep=comma, header=true]{
+  config, mode, freq1, freq2, freq3
+  \multirow{3}{*}{5-1}, 100, 1.2715, 0.8408, 0.0205
+  , 010, 0.8308, 0.8308, 0.8308
+  , 101, 1.2771, 0.8375, 1.1934
+  \multirow{3}{*}{6-1}, 100, 1.3147, 0.8383, 1.2003
+  , 010, 0.8415, 0.8415, 0.8415
+  , 101, 1.3144, 0.8348, 1.1901
+  \multirow{3}{*}{6-2}, 100, 1.3303, 0.8455, 1.2288
+  , 010, 0.8378, 0.8378, 0.8378
+  , 101, 1.3189, 0.8402, 1.2114
+  \multirow{3}{*}{6-4}, 100, 1.3263, 0.8547, 1.3263
+  , 010, 0.8498, 0.8498, 0.8498
+  , 101, 1.3250, 0.8505, 1.2713
+  \multirow{3}{*}{6-6}, 100, 1.3144, 0.8552, 1.3303
+  , 010, 0.8519, 0.8519, 0.8519
+  , 101, 1.3147, 0.8574, 1.3474
+}\datafreq
+
+\pgfplotstableread[col sep=comma, header=true]{
+  config, f1, f2, f3
+  5-1, 1.1669, 0.8305, 1.2647
+  6-1, 1.1669, 0.8343, 1.3120
+  6-2, 1.1815, 0.8366, 1.3120
+  6-4, 1.2394, 0.8437, 1.3122
+  6-6, 1.3100, 0.8513, 1.3356
+}\theoric
+
+\pgfplotstableread[col sep=comma, header=true]{
+  config, fe, ft, err
+  \multirow{3}{*}{5-1}, 0.8308, 0.8305, 0.0361
+  , 1.1934, 1.1669, 2.2205
+  , 1.2771, 1.2647, 0.9709
+  \multirow{3}{*}{6-1}, 0.8415, 0.8343, 0.8556
+  , 1.1901, 1.1669, 1.9494
+  , 1.3144, 1.3120, 0.1826
+  \multirow{3}{*}{6-2}, 0.8378, 0.8366, 0.1432
+  , 1.2114, 1.1815, 2.4682
+  , 1.3189, 1.3120, 0.5232
+  \multirow{3}{*}{6-4}, 0.8498, 0.8437, 0.7178
+  , 1.2713, 1.2394, 2.5092
+  , 1.3250, 1.3122, 0.9660
+  \multirow{3}{*}{6-6}, 0.8519, 0.8513, 0.0704
+  , 1.3147, 1.3100, 0.3575
+  , 1.3474, 1.3356, 0.8758
+}\comparison
+
+\title[Caracterización Experimental de las Frecuencias de Modos Normales en Péndulos Acoplados Usando la Aproximación de Pequeñas Oscilaciones]{Caracterización Experimental de las Frecuencias de Modos Normales en Péndulos Acoplados Usando la Aproximación de Pequeñas Oscilaciones}
+\author[1]{\fnm{Sebastián} \sur{Rodríguez}}
+\author[1]{\fnm{Laura} \sur{Torres}}
+\author[1]{\fnm{Julian} \sur{Avila}}
+\affil[1]{\orgdiv{Física}, \orgname{Universidad Distrital Francisco José de Caldas}}
+
+\raggedbottom
 
 \begin{document}
 
-\maketitle
-\vspace{-1em}
-\hrule
-\vspace{1em}
+\abstract{
+  Se investigó experimentalmente el comportamiento dinámico y
+  los modos normales de oscilación de un sistema de tres péndulos
+  acoplados, aplicando la aproximación de pequeñas oscilaciones.
+  La metodología incluyó el diseño y construcción del montaje, la
+  caracterización de componentes, y la adquisición de datos de
+  desplazamiento angular en cinco configuraciones y tres condiciones
+  iniciales.
+  Las ecuaciones de movimiento se derivaron mediante sumatoria de torques
+  y la aproximación de ángulos pequeños.
+  El análisis de datos se realizó con Transformada Rápida de Fourier (FFT)
+  para identificar frecuencias principales, comparándolas con valores
+  teóricos obtenidos del sistema linealizado.
+  Los resultados experimentales identificaron las frecuencias de oscilación
+  para cada péndulo, demostrando su dependencia de la configuración y
+  condiciones iniciales.
+  El péndulo central mostró una frecuencia consistente (\qty{0.844}{\Hz}),
+  mientras que los laterales exhibieron dualidad de frecuencias dominantes.
+  La comparación cuantitativa con la teoría reveló una precisión notable
+  (errores entre \qty{0.036}{\percent} y \qty{2.509}{\percent}).
+  Se confirmó el papel crítico de la geometría de acoplamiento en la
+  determinación de frecuencias y transmisión de energía, observándose
+  pulsaciones.
+  Se identificó una frecuencia anómala baja (\qty{0.0021}{\Hz})
+  no predicha por el modelo lineal, sugiriendo efectos no lineales o
+  amortiguamiento.
+  Se valida la aproximación de pequeñas oscilaciones y la identificación
+  experimental de modos normales.
+}
 
-\printbibliography
+\maketitle
+
+\input{./Sections/introduction.tex}
+\input{./Sections/methods.tex}
+\input{./Sections/results.tex}
+\input{./Sections/conclusions.tex}
+
+\bibliography{ref}
 
 \end{document}
