@@ -117,7 +117,7 @@ def plot_spectrum(freq_data_list, spectrum_data_list, main_frequencies, filename
     return fig
 
 if __name__ == "__main__":
-    data_directory = "./Data/"
+    data_directory = "../Data/"
     summary_file_path = "./frequency_summary.txt"
     pdf_output_dir = "./Analysis_Results/"
     os.makedirs(pdf_output_dir, exist_ok=True)
