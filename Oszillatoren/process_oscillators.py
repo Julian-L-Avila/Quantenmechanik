@@ -2,6 +2,7 @@ import pandas
 import os
 import numpy as np
 from scipy.fft import fft, fftfreq
+from scipy.signal import find_peaks
 
 # Define the input files and their time shifts
 # Format: (filename, time_shift)
@@ -152,6 +153,80 @@ def calculate_fft(processed_dataframe: pandas.DataFrame) -> dict:
         }
         
     return fft_results
+
+def find_top_n_peaks(frequencies: np.ndarray, amplitudes: np.ndarray, n: int = 3, height_threshold: float = 0.001) -> list:
+    """
+    Finds the top N peaks from FFT data.
+
+    Args:
+        frequencies: Array of frequencies.
+        amplitudes: Array of corresponding amplitudes (file-normalized).
+        n: Number of top peaks to return.
+        height_threshold: Minimum height of peaks to detect.
+
+    Returns:
+        A list of dictionaries, where each dictionary represents a peak
+        with 'frequency' and 'amplitude' keys, sorted by amplitude.
+    """
+    if frequencies.size == 0 or amplitudes.size == 0 or frequencies.size != amplitudes.size:
+        return []
+
+    peak_indices, _ = find_peaks(amplitudes, height=height_threshold)
+    
+    if peak_indices.size == 0:
+        return []
+
+    peak_amplitudes = amplitudes[peak_indices]
+    peak_frequencies = frequencies[peak_indices]
+
+    detected_peaks = [{'frequency': f, 'amplitude': a} for f, a in zip(peak_frequencies, peak_amplitudes)]
+    
+    # Sort peaks by amplitude in descending order
+    sorted_peaks = sorted(detected_peaks, key=lambda x: x['amplitude'], reverse=True)
+    
+    return sorted_peaks[:n]
+
+def save_peaks_data(original_file_path: str, 
+                    top_peaks_for_file: dict, 
+                    output_dir: str):
+    """
+    Saves the top N peak data for a single file to a TSV file.
+
+    Args:
+        original_file_path: The path of the original input file (e.g., "Data/111_11.tsv").
+        top_peaks_for_file: Dictionary where keys are angle column names and values are
+                            lists of peak dictionaries (e.g., [{'frequency': f, 'amplitude': a}, ...]).
+        output_dir: The directory to save the output TSV file.
+    """
+    try:
+        base_name = os.path.basename(original_file_path)
+        output_filename = os.path.splitext(base_name)[0] + '_peaks.tsv'
+        full_output_path = os.path.join(output_dir, output_filename)
+
+        rows_for_df = []
+        for angle_col in ANGLE_COLUMNS: # Iterate in defined order
+            peaks_list = top_peaks_for_file.get(angle_col, [])
+            for i, peak_data in enumerate(peaks_list):
+                rank = i + 1
+                rows_for_df.append({
+                    'angle': angle_col,
+                    'peak_rank': rank,
+                    'frequency': peak_data['frequency'],
+                    'amplitude': peak_data['amplitude'] # This is file-normalized amplitude
+                })
+
+        if rows_for_df:
+            peaks_df = pandas.DataFrame(rows_for_df)
+            # Ensure columns are in the desired order
+            peaks_df = peaks_df[['angle', 'peak_rank', 'frequency', 'amplitude']]
+            
+            peaks_df.to_csv(full_output_path, sep='\t', index=False, float_format='%.6e', na_rep='NaN')
+            print(f"Saved peak data for {original_file_path} to {full_output_path}")
+        else:
+            print(f"No peak data to save for {original_file_path}")
+
+    except Exception as e:
+        print(f"Error saving peak data for {original_file_path}: {e}")
 
 # def normalize_spectra(all_files_fft_data: list, global_max_amplitude: float) -> list:
 #     """
@@ -310,15 +385,40 @@ if __name__ == "__main__":
                                 print(f"  No normalized amplitude data for {angle_verify_col} to verify (empty array).")
                         else:
                              print(f"  Angle column {angle_verify_col} not found in file_normalized_fft_data for {file_path}.")
+                    
+                    # Find top N peaks for the current file
+                    top_peaks_data_for_file = {}
+                    for angle_col_peak in ANGLE_COLUMNS:
+                        if angle_col_peak in file_normalized_fft_data:
+                            current_frequencies = file_normalized_fft_data[angle_col_peak]['frequency']
+                            current_normalized_amplitudes = file_normalized_fft_data[angle_col_peak]['amplitude']
+                            if current_normalized_amplitudes.size > 0 and current_frequencies.size > 0 : # ensure both not empty
+                                top_peaks = find_top_n_peaks(current_frequencies, current_normalized_amplitudes, n=3)
+                                top_peaks_data_for_file[angle_col_peak] = top_peaks
+                            else:
+                                top_peaks_data_for_file[angle_col_peak] = []
+                        else:
+                            top_peaks_data_for_file[angle_col_peak] = []
+                    
+                    # Print top peaks for the current file
+                    print(f"Top peaks for {file_path}:")
+                    for angle_col_print, peaks_print in top_peaks_data_for_file.items():
+                        print(f"  {angle_col_print}:")
+                        if peaks_print:
+                            for peak in peaks_print:
+                                print(f"    Freq: {peak['frequency']:.2f} Hz, Norm_Amp: {peak['amplitude']:.4f}")
+                        else:
+                            print("    No peaks found or data was empty.")
 
                     processed_and_normalized_data_for_saving.append({
                         'file_name': file_path,
-                        'normalized_fft_results': file_normalized_fft_data 
+                        'normalized_fft_results': file_normalized_fft_data,
+                        'top_peaks': top_peaks_data_for_file
                     })
-                    print(f"File-specific normalization and verification done for {file_path}.")
+                    print(f"File-specific normalization, verification, and peak finding done for {file_path}.")
 
                 else:
-                    print(f"Skipping FFT, normalization, and verification for {file_path}: Not enough data points (less than 2) after processing.")
+                    print(f"Skipping FFT, normalization, verification and peak finding for {file_path}: Not enough data points (less than 2) after processing.")
             else:
                 print(f"Skipping {file_path}: Failed to load or DataFrame is empty.")
         
@@ -331,10 +431,15 @@ if __name__ == "__main__":
         else:
             for item in processed_and_normalized_data_for_saving:
                 original_input_path = item['file_name']
-                # The 'fft_results' key in save_spectrum_data now receives file-normalized data
-                normalized_results_to_save = item['normalized_fft_results'] 
-                save_spectrum_data(original_input_path, normalized_results_to_save, output_directory)
-            print("Finished saving file-specific normalized spectra.")
+                normalized_spectrum_to_save = item['normalized_fft_results'] 
+                top_peaks_to_save = item['top_peaks']
+
+                # Save the full normalized spectrum
+                save_spectrum_data(original_input_path, normalized_spectrum_to_save, output_directory)
+                # Save the peak data
+                save_peaks_data(original_input_path, top_peaks_to_save, output_directory)
+                
+            print("Finished saving file-specific normalized spectra and peak data.")
 
             # Demonstrate File-Specific Normalization for the first successfully processed file
             if processed_and_normalized_data_for_saving:
