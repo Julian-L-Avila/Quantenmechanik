@@ -32,13 +32,9 @@ def load_and_process_file(relative_file_path: str, time_shift: float) -> pandas.
     """
     full_file_path = "" # Initialize in case of early error
     try:
-        current_script_path = os.path.realpath(__file__)
+        current_script_path = os.path.realpath(__file__) 
         script_directory = os.path.dirname(current_script_path)
-
-        # Path construction should be robust.
-        # relative_file_path is like "Data/111_11.tsv"
-        # script_directory is the absolute path to the directory containing this script.
-        # So, this join gives the absolute path to the data file.
+        
         full_file_path = os.path.join(script_directory, relative_file_path)
 
         df = pandas.read_csv(
@@ -48,19 +44,19 @@ def load_and_process_file(relative_file_path: str, time_shift: float) -> pandas.
             comment='#',
             header=None
         )
-
+        
         for col in COLUMN_NAMES:
             df[col] = pandas.to_numeric(df[col], errors='coerce')
         df.dropna(subset=COLUMN_NAMES, inplace=True)
 
         df['time'] = df['time'] - time_shift
         df_processed = df[df['time'] > 0].copy()
-
+        
         return df_processed
 
     except FileNotFoundError:
         err_msg = f"Error: File not found for '{relative_file_path}'."
-        if full_file_path: # Add attempted path if available
+        if full_file_path: 
             err_msg += f" (Attempted path: {full_file_path})"
         print(err_msg)
         return None
@@ -71,7 +67,7 @@ def load_and_process_file(relative_file_path: str, time_shift: float) -> pandas.
 def calculate_fft(processed_dataframe: pandas.DataFrame) -> dict:
     fft_results = {}
     time_data = processed_dataframe['time'].to_numpy()
-
+    
     for angle_col_name in ANGLE_COLUMNS:
         if angle_col_name not in processed_dataframe.columns:
             print(f"Warning: Column {angle_col_name} not found in DataFrame. Skipping FFT for this column.")
@@ -85,12 +81,12 @@ def calculate_fft(processed_dataframe: pandas.DataFrame) -> dict:
             print(f"Warning: Insufficient data points (N={N}) for FFT on {angle_col_name}. Skipping.")
             fft_results[angle_col_name] = {'frequency': np.array([]), 'amplitude': np.array([])}
             continue
-
+        
         if time_data.size < 2:
              print(f"Warning: Insufficient time data points to calculate dt for {angle_col_name}. Skipping.")
              fft_results[angle_col_name] = {'frequency': np.array([]), 'amplitude': np.array([])}
              continue
-
+        
         dt = time_data[1] - time_data[0]
         if dt <= 0:
             print(f"Warning: Non-positive sampling interval dt={dt:.4f} for {angle_col_name}. Skipping FFT.")
@@ -132,13 +128,13 @@ def transform_filename_parts(original_basename: str) -> str:
         print(f"Warning: Filename '{original_basename}' (base: '{name_without_suffix}') does not match expected 'part1_part2.tsv' format. Cannot transform.")
         return name_without_suffix
 
-def save_peaks_data(original_file_path: str,
-                    top_peaks_for_file: dict,
+def save_peaks_data(original_file_path: str, 
+                    top_peaks_for_file: dict, 
                     output_dir: str):
     try:
         original_basename = os.path.basename(original_file_path)
         transformed_base = transform_filename_parts(original_basename)
-        output_filename = transformed_base + '_peaks.tsv'
+        output_filename = transformed_base + '-peaks.tsv' # Changed _ to -
         full_output_path = os.path.join(output_dir, output_filename)
 
         rows_for_df = []
@@ -162,13 +158,13 @@ def save_peaks_data(original_file_path: str,
     except Exception as e:
         print(f"Error saving peak data for {original_file_path}: {e}")
 
-def save_spectrum_data(original_file_path: str,
+def save_spectrum_data(original_file_path: str, 
                        fft_results_for_file: dict,
                        output_dir: str):
     try:
         original_basename = os.path.basename(original_file_path)
         transformed_base = transform_filename_parts(original_basename)
-        output_filename = transformed_base + '_spectrum.tsv'
+        output_filename = transformed_base + '-spectrum.tsv' # Changed _ to -
         full_output_path = os.path.join(output_dir, output_filename)
 
         df_data = {}
@@ -178,7 +174,7 @@ def save_spectrum_data(original_file_path: str,
                fft_results_for_file[angle]['frequency'].size > 0:
                 reference_angle_data = fft_results_for_file[angle]
                 break
-
+        
         if reference_angle_data is None:
             print(f"Skipping save for {original_file_path}: No frequency data found for any angle (full spectrum).")
             return
@@ -195,11 +191,11 @@ def save_spectrum_data(original_file_path: str,
                 df_data[angle_col] = np.full(num_freq_points, np.nan)
                 if angle_data:
                      print(f"Warning for {original_file_path}, {angle_col} (full spectrum): Mismatched data length. Expected {num_freq_points}, got {angle_data['amplitude'].size}. Filling with NaN.")
-
+        
         spectrum_df = pandas.DataFrame(df_data)
         ordered_columns = ['frequency'] + [col for col in ANGLE_COLUMNS if col in spectrum_df.columns]
         spectrum_df = spectrum_df[ordered_columns]
-
+        
         spectrum_df.to_csv(full_output_path, sep='\t', index=False, float_format='%.6e', na_rep='NaN')
         print(f"Saved spectrum data for {original_file_path} to {full_output_path}")
     except Exception as e:
@@ -250,7 +246,7 @@ if __name__ == "__main__":
                             'frequency': frequencies,
                             'amplitude': normalized_amplitudes
                         }
-
+                    
                     print(f"Verification of normalized amplitudes for {file_path}:")
                     for angle_verify_col in ANGLE_COLUMNS:
                         if angle_verify_col in file_normalized_fft_data:
@@ -262,7 +258,7 @@ if __name__ == "__main__":
                                 print(f"  No normalized amplitude data for {angle_verify_col} to verify (empty array).")
                         else:
                              print(f"  Angle column {angle_verify_col} not found in file_normalized_fft_data for {file_path}.")
-
+                    
                     top_peaks_data_for_file = {}
                     for angle_col_peak in ANGLE_COLUMNS:
                         if angle_col_peak in file_normalized_fft_data:
@@ -275,7 +271,7 @@ if __name__ == "__main__":
                                 top_peaks_data_for_file[angle_col_peak] = []
                         else:
                             top_peaks_data_for_file[angle_col_peak] = []
-
+                    
                     print(f"Top peaks for {file_path}:")
                     for angle_col_print, peaks_print in top_peaks_data_for_file.items():
                         print(f"  {angle_col_print}:")
@@ -295,7 +291,7 @@ if __name__ == "__main__":
                     print(f"Skipping FFT, normalization, verification and peak finding for {file_path}: Not enough data points (less than 2) after processing.")
             else:
                 print(f"Skipping {file_path}: Failed to load or DataFrame is empty.")
-
+        
         print(f"\nFinished processing all files. {len(processed_and_normalized_data_for_saving)} file(s) had successful FFT and normalization.")
 
         print("\nStarting to save file-specific normalized spectra...")
@@ -304,17 +300,17 @@ if __name__ == "__main__":
         else:
             for item in processed_and_normalized_data_for_saving:
                 original_input_path = item['file_name']
-                normalized_spectrum_to_save = item['normalized_fft_results']
+                normalized_spectrum_to_save = item['normalized_fft_results'] 
                 top_peaks_to_save = item['top_peaks']
                 save_spectrum_data(original_input_path, normalized_spectrum_to_save, output_directory)
                 save_peaks_data(original_input_path, top_peaks_to_save, output_directory)
             print("Finished saving file-specific normalized spectra and peak data.")
 
             if processed_and_normalized_data_for_saving:
-                if processed_and_normalized_data_for_saving:
+                if processed_and_normalized_data_for_saving: 
                     first_processed_file_data = processed_and_normalized_data_for_saving[0]
                     file_name_for_print = first_processed_file_data['file_name']
-                    angle1_norm_fft = first_processed_file_data['normalized_fft_results'].get('angle1')
+                    angle1_norm_fft = first_processed_file_data['normalized_fft_results'].get('angle1') 
                     if angle1_norm_fft and angle1_norm_fft['frequency'].size > 0:
                         print(f"\nFile-Specific Normalized FFT results for angle1 of ({file_name_for_print}) (first 5 points - for demonstration):")
                         for i in range(min(5, angle1_norm_fft['frequency'].size)):
@@ -323,11 +319,11 @@ if __name__ == "__main__":
                             print(f"Freq: {freq:.2f} Hz, File-Norm_Amp: {norm_amp:.4f}")
                     else:
                         print(f"\nNo FFT data with 'angle1' to display for {file_name_for_print} for demonstration.")
-                else:
-                    print("\nNo processed and normalized data available for demonstration.")
+                else: 
+                    print("\nNo processed and normalized data available for demonstration.") 
             else:
                 print("\nNo file-specific normalized FFT data available to display for demonstration.")
-
+    
     # Test calls for transform_filename_parts (REMOVED/COMMENTED OUT)
     # print("\n--- Testing transform_filename_parts ---")
     # test_cases = ["001_16.tsv", "01_5.tsv", "badformat.tsv", "001_16_extra.tsv", "another_bad_format_again.tsv"]
