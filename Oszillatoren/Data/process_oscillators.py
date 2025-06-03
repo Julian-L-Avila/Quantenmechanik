@@ -11,7 +11,7 @@ INPUT_FILES_DATA = [
     ("Data/111_11.tsv", 16.25),
     ("Data/010_15.tsv", 0.3),
     ("Data/010_26.tsv", 10.5),
-    ("Data/101_26.tsv", 3.0),
+    ("Data/101_16.tsv", 3.0),
     ("Data/010_66.tsv", 6.6),
     ("Data/001_66.tsv", 2.6),
 ]
@@ -204,7 +204,7 @@ def save_spectrum_data(original_file_path: str,
 if __name__ == "__main__":
     current_script_abs_path = os.path.abspath(__file__)
     script_parent_dir = os.path.dirname(current_script_abs_path)
-    output_directory = os.path.join(script_parent_dir, 'Data', 'Processed_Spectra')
+    output_directory = os.path.join(script_parent_dir, 'Spectra')
     os.makedirs(output_directory, exist_ok=True)
     print(f"Output directory set to: {os.path.abspath(output_directory)}")
 
@@ -246,7 +246,7 @@ if __name__ == "__main__":
                             'frequency': frequencies,
                             'amplitude': normalized_amplitudes
                         }
-                    
+
                     print(f"Verification of normalized amplitudes for {file_path}:")
                     for angle_verify_col in ANGLE_COLUMNS:
                         if angle_verify_col in file_normalized_fft_data:
