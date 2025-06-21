@@ -99,8 +99,8 @@ g_const = 9.81  # m/s^2
 # Parameter des Systems (Beispielwerte)
 k1_val = 3.32   # N/m oder N/rad, je nach Definition von cl
 k2_val = 3.04   # N/m oder N/rad
-cl_val = 0.046 * 6    # m
-dl_val = 0.046 * 6    # m
+cl_val = 0.046 * 5    # m
+dl_val = 0.046 * 1    # m
 y_cm1_val = 0.142 # m (angenommen positiv, wenn der Schwerpunkt eine rückstellende Kraft erzeugt)
 y_cm2_val = 0.28 # m (kann auch negativ sein, was die Natur des g-Terms ändert)
 y_cm3_val = 0.14 # m
