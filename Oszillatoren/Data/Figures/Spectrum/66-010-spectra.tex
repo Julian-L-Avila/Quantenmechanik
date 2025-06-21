@@ -1,0 +1,92 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{siunitx}
+
+\sisetup{separate-uncertainty}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\begin{axis}[
+		width = 30cm,
+		height = 11cm,
+		title = {Espectro de Frecuencia [6-6 (010)]},
+		xlabel = {\(f \, [\unit{\hertz}]\)},
+		ylabel = {Amplitud [u.a.]},
+		xmin = 0.0, xmax = 3.0,
+		ymin = 0.0, ymax = 1.1,
+		xtick distance=0.5, minor x tick num=5,
+		ytick distance=0.2, minor y tick num=5,
+		grid = major,
+		major grid style = {lightgray!60, thin},
+		minor grid style = {lightgray!30, very thin},
+		axis line style = {thick},
+		tick style={thick, black},
+		legend pos = north east,
+		legend style = {
+			draw=none,
+			fill=none,
+		},
+		title style={font=\bfseries\Large},
+		label style={font=\bfseries\large},
+		tick label style={font=\normalsize},
+		]
+
+		\addplot[
+			ultra thick,
+			color = Orchid,
+			] table[
+			x index=0,
+			y index=1,
+			]{../../../Data/Spectra/66-010-spectrum.tsv};
+		\addlegendentry{Péndulo 1 ($f_1 = \qty{0.87}{\hertz}$)}
+
+		\addplot[
+			ultra thick,
+			color = ForestGreen,
+			] table[
+			x index=0,
+			y index=2,
+			]{../../../Data/Spectra/66-010-spectrum.tsv};
+		\addlegendentry{Péndulo 2 ($f_2 = \qty{0.87}{\hertz}$)}
+
+		\addplot[
+			ultra thick,
+			color= Cyan,
+			] table[
+			x index=0,
+			y index=3,
+			]{../../../Data/Spectra/66-010-spectrum.tsv};
+		\addlegendentry{Péndulo 3 ($f_3 = \qty{0.87}{\hertz}$)}
+
+		% ϑ_1
+		\node [fill=Orchid, circle, inner sep=0pt, minimum size=5pt] at (axis cs:0.87,0.372) {};
+
+		\draw [dashed, color=Orchid, thick] (axis cs:0.87,0) -- (axis cs:0.87,1.1)
+			node[right=0.2cm, at={(axis cs:0.87,0.9)}, font=\Large] {$f_1$};
+		\draw [dashed, color=Orchid, thick] (axis cs:1.35,0) -- (axis cs:1.35,1.1)
+			node[right=0.2cm, at={(axis cs:1.35,0.9)}, font=\Large] {$\frac{3}{2} f_1$};
+
+		% ϑ_2
+		\node [fill=ForestGreen, circle, inner sep=0pt, minimum size=5pt] at (axis cs:0.87,1.0) {};
+
+		\draw [dashed, color=ForestGreen, thick] (axis cs:0.87,0) -- (axis cs:0.87,1.1)
+			node[right=0.2cm, at={(axis cs:0.87,1.0)}, font=\Large] {$f_2$};
+		\draw [dashed, color=ForestGreen, thick] (axis cs:1.74,0) -- (axis cs:1.74,1.1)
+			node[right=0.2cm, at={(axis cs:1.74,1.0)}, font=\Large] {$\frac{4}{2} f_2$};
+
+		% ϑ_3
+		\node [fill=Cyan, circle, inner sep=0pt, minimum size=5pt] at (axis cs:0.87,0.37) {};
+
+		\draw [dashed, color=Cyan, thick] (axis cs:0.87,0) -- (axis cs:0.87,1.1)
+			node[right=0.2cm, at={(axis cs:0.87,0.8)}, font=\Large] {$f_3$};
+
+	\end{axis}
+\end{tikzpicture}
+
+\end{document}

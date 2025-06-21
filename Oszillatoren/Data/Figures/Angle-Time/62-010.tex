@@ -1,0 +1,71 @@
+\documentclass[tikz]{standalone}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.18}
+\usepackage{tikz}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{siunitx}
+
+\sisetup{separate-uncertainty}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\begin{axis}[
+		width = 30cm,
+		height = 11cm,
+		title = {Configuración 6-2, Condición inicial 010},
+		xlabel = {\(t \, [\unit{\second}]\)},
+		ylabel = {\(\theta [\unit{\degree}]\)},
+		xmin = 0.0, xmax = 12.0,
+		ymin = -15.0, ymax = 15.0,
+		xtick distance=2, minor x tick num=1,
+		ytick distance=10, minor y tick num=1,
+		grid = major,
+		major grid style = {lightgray!60, thin},
+		minor grid style = {lightgray!30, very thin},
+		axis line style = {thick},
+		tick style={thick, black},
+		legend pos = north east,
+		legend style = {
+			draw=none,
+			fill=none,
+		},
+		title style={font=\bfseries\Large},
+		label style={font=\bfseries\large},
+		tick label style={font=\normalsize},
+		]
+
+		\addplot[
+			ultra thick,
+			color = Orchid,
+			smooth,
+			] table[
+			x expr={\thisrowno{0} - 10.5},
+			y expr={\thisrowno{1}},
+			]{../../../Data/010_26.tsv};
+		\addlegendentry{$\theta_1$}
+
+		\addplot[
+			ultra thick,
+			color = ForestGreen,
+			] table[
+			x expr={\thisrowno{0} - 10.5},
+			y expr={\thisrowno{2}},
+			]{../../../Data/010_26.tsv};
+		\addlegendentry{$\theta_2$}
+
+		\addplot[
+			ultra thick,
+			color= Cyan,
+			smooth,
+			] table[
+			x expr={\thisrowno{0} - 10.5},
+			y expr={\thisrowno{3}},
+			]{../../../Data/010_26.tsv};
+		\addlegendentry{$\theta_3$}
+	\end{axis}
+\end{tikzpicture}
+
+\end{document}
