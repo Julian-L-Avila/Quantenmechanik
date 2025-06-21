@@ -1,0 +1,61 @@
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{textcomp}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage{pgfplotstable}
+\usepackage[english]{cleveref}
+\usepackage{siunitx}
+\usepackage{multirow}
+
+\pgfplotsset{compat=1.18}
+\pgfkeys{/pgf/number format/1000 sep={\,}}
+
+\AtBeginDocument{\decimalpoint}
+\renewcommand{\arraystretch}{1.2}
+\sisetup{group-digits=true,
+  group-separator={\,},
+  separate-uncertainty}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  urlcolor=blue,
+  pdftitle={Report},
+  pdfauthor={Rodriguez S, Torres L, Avila J},
+  pdfsubject={Electron},
+}
+\urlstyle{same}
+
+\title[]{Electron}
+\author[1]{\fnm{Sebastián} \sur{Rodríguez}}
+\author[1]{\fnm{Laura} \sur{Torres}}
+\author[1]{\fnm{Julian} \sur{Avila}}
+\affil[1]{\orgdiv{Física}, \orgname{Universidad Distrital Francisco José de Caldas}}
+
+\raggedbottom
+
+\begin{document}
+
+\abstract{
+}
+\maketitle
+
+\input{./Sections/theory.tex}
+
+\bibliography{ref}
+
+\end{document}
