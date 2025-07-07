@@ -1,0 +1,75 @@
+\documentclass[11pt,
+  letterpaper,
+  openany,
+  toc=bibliography,
+  idxtotoc,
+  bookmarks]{labbook}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage{csquotes}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{authblk}
+\usepackage[spanish]{cleveref}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{pgfplotstable}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{float}
+
+\pgfplotsset{compat=1.18}
+\pgfkeys{/pgf/number format/1000 sep={\,}}
+
+\AtBeginDocument{\decimalpoint}
+\renewcommand{\arraystretch}{1.2}
+\sisetup{group-digits=true,
+  group-separator={\,},
+  separate-uncertainty}
+
+\usepackage[backend=biber,style=numeric]{biblatex}
+\addbibresource{./references-pre-project.bib}
+
+\usepackage{pdfbase}
+\pdfinfo{
+  /Title (Electron Beam)
+  /Author (Sebastián Rodríguez, Laura Torres, Julián Ávila)
+  /Creator (LaTeX with labbook class)
+}
+
+\title{\textbf{Rayo de Electrones} \\
+Bitácora de Laboratorio}
+\author{Sebastian Rodríguez \and Laura Torres \and Julian Avila}
+\affil{Universidad Distrital Francisco José de Caldas}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\labday{Miércoles 4, Junio 2025}
+
+\input{./Sections/Expsetup.tex}
+
+
+\labday{Jueves 5, Junio 2025}
+
+\input{./Sections/2025_06_05.tex}
+
+\labday{Lunes 8, Junio 2025}
+
+\input{./Sections/2025_06_08.tex}
+
+
+\printbibliography
+
+\end{document}

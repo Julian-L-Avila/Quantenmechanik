@@ -1,0 +1,59 @@
+\section{Montaje Experimental: Deflexión de un Haz de Electrones con Bobinas de Helmholtz}
+Este montaje experimental tiene como objetivo \textbf{demostrar la deflexión de un haz de electrones} bajo la influencia de campos magnéticos generados por pares de bobinas de Helmholtz. Aunque el concepto de partida fue simular un experimento de Stern-Gerlach, el diseño actual se centra en la observación de la trayectoria del haz de electrones al pasar por campos magnéticos controlados.
+
+---
+
+\subsection{Componentes del Montaje}
+El sistema se compone principalmente de los siguientes elementos:
+\begin{itemize}
+    \item \textbf{Cañón de Electrones (Leibold):} Genera un haz de electrones colimado. Se opera a un potencial de aceleración de aproximadamente \textbf{3.1 kV a 4.3 kV}. El haz de electrones emerge del cañón ya enfocado y con una dirección definida.
+    \item \textbf{Tubo de Rayos Catódicos (Leibold):} Es el recipiente de vacío por donde viaja el haz de electrones desde el cañón hasta la pantalla.
+    \item \textbf{Pares de Bobinas de Helmholtz (Leibold):} Se utilizan dos pares de bobinas coaxiales, cada par alimentado por una \textbf{fuente de corriente variable de hasta 3 Amperios}. Estas bobinas son fundamentales para generar los campos magnéticos que interactúan con el haz de electrones.
+    \begin{itemize}
+        \item \textbf{Dimensiones Aproximadas de las Bobinas:}
+        \begin{itemize}
+            \item Radio ($R$): Aproximadamente \textbf{6.5 cm}.
+            \item Número de Giros por Bobina ($N$): Aproximadamente \textbf{320 giros}.
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Fuentes de Corriente Variables:} Son esenciales para suministrar y controlar la corriente (hasta 3A) que circula por cada par de bobinas. Permiten ajustar la magnitud del campo magnético generado.
+    \item \textbf{Pantalla Fluorescente:} Ubicada al final de la trayectoria del haz de electrones dentro del tubo, donde el impacto de los electrones genera un punto luminoso, permitiendo la observación visual de la trayectoria y deflexión del haz.
+\end{itemize}
+
+---
+
+\subsection{Disposición del Montaje}
+El cañón de electrones se alinea de manera que el haz de electrones colimado pase directamente a través del centro de las bobinas de Helmholtz. Los dos pares de bobinas se colocan coaxialmente, es decir, sus ejes se encuentran sobre la misma línea, la cual coincide con la trayectoria inicial del haz de electrones. El haz emerge del cañón, atraviesa el espacio entre los pares de bobinas y, finalmente, incide sobre la pantalla fluorescente. como se muestra en la siguiente imagen.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Sections/Figures/Montaje.jpeg}
+    \caption{Montaje experimental.}
+    \label{fig:nombre_descriptivo_de_la_imagen}
+\end{figure}
+
+---
+
+\subsection{Configuraciones de las Bobinas y Generación de Campo Magnético}
+La versatilidad de este montaje radica en la capacidad de configurar las bobinas de dos maneras distintas para generar diferentes campos magnéticos:
+
+\subsubsection{1. Configuración Helmholtz (Campo Aditivo)}
+\begin{itemize}
+    \item \textbf{Descripción:} En esta configuración, la corriente fluye en la \textbf{misma dirección} a través de ambas bobinas de cada par (y también entre los dos pares coaxiales si están siendo usados en conjunto de esta forma).
+    \item \textbf{Campo Magnético Generado:} Esta disposición produce un \textbf{campo magnético uniforme y aditivo} en la región central entre las bobinas. Este campo es aproximadamente paralelo al eje de las bobinas.
+    \item \textbf{Efecto en el Haz de Electrones:} Un campo uniforme y perpendicular a la velocidad de los electrones causará una \textbf{deflexión circular} del haz.
+\end{itemize}
+
+\subsubsection{2. Configuración Anti-Helmholtz (Campo Sustractivo/Gradiente)}
+\begin{itemize}
+    \item \textbf{Descripción:} Para esta configuración, la corriente se invierte en una de las bobinas de cada par (o entre los pares si se usan para generar un gradiente axial), de modo que fluye en \textbf{direcciones opuestas} entre ellas.
+    \item \textbf{Campo Magnético Generado:} Esta disposición crea un \textbf{campo magnético con un fuerte gradiente} en la región central. El campo es nulo en el punto medio exacto entre las bobinas y aumenta en magnitud a medida que uno se aleja de este punto central, con direcciones opuestas a cada lado.
+    \item \textbf{Efecto en el Haz de Electrones:} Un gradiente de campo magnético perpendicular a la trayectoria del haz puede generar \textbf{fuerzas variables} sobre los electrones, resultando en patrones de deflexión más complejos, potencialmente extendiendo el punto luminoso en la pantalla.
+\end{itemize}
+
+---
+
+\subsection{Funcionamiento y Observaciones}
+Las fuentes de corriente variables permiten ajustar la magnitud del campo magnético generado por las bobinas. Durante el experimento, se aplicaron \textbf{señales de corriente tipo seno, rampa y cuadrada} con \textbf{frecuencias nunca superiores a los 100 Hz}. La interacción del haz de electrones con el campo magnético resultante produce patrones luminosos en la pantalla fluorescente. Se observaron figuras dinámicas en la pantalla que recordaban a \textbf{figuras de Lissajous}, pero que variaban en el tiempo debido a la modulación de los campos magnéticos. Un análisis posterior detallará las características de estas figuras y su relación con las configuraciones y frecuencias de las bobinas.
+
+Este montaje permite una clara demostración de cómo los campos magnéticos, generados en diferentes configuraciones, pueden influir en la trayectoria de partículas cargadas como los electrones.
