@@ -1,0 +1,99 @@
+\subsection{Modelo II: Campo a partir de la Ley de Biot-Savart}
+\label{ssec:modelo_biot_savart}
+
+En este modelo, se abandona la aproximación de campo uniforme para calcular
+el campo magnético de forma más fundamental. Se utiliza la ley de
+Biot-Savart para cada espira de las bobinas.
+
+Se considera una única espira circular de radio $R$ en el plano inferior
+del par de bobinas del eje $z$, ubicado en $z = -R/2$. Su geometría se
+parametriza por el vector $\boldsymbol{l}_1(\theta)$:
+%
+\begin{equation}
+	\boldsymbol{l}_1(\theta) = R \cos(\theta) e_1 + R \sin(\theta) e_2
+	- \frac{R}{2} e_3.
+\end{equation}
+%
+El campo magnético bivectorial que esta espira genera en un punto
+arbitrario $\boldsymbol{r} = x_1 e_1 + x_2 e_2 + x_3 e_3$ está dado por la
+ley de Biot-Savart, integrada sobre el lazo cerrado:
+%
+\begin{equation}
+	\boldsymbol{B}_1(t, \boldsymbol{r}) = \frac{\mu_0 N I_1(t)}{4 \pi} \oint
+	\frac{\mathrm{d}\boldsymbol{l}_1 \wedge (\boldsymbol{r} - \boldsymbol{l}_1)}
+	{|\boldsymbol{r} - \boldsymbol{l}_1|^3},
+	\label{eq:biot_savart_bivector}
+\end{equation}
+%
+donde $N$ es el número de vueltas de la bobina y $I_1(t)$ es la corriente
+que circula por ella.
+
+El campo de la segunda bobina del par, ubicada coaxialmente en $z = +R/2$,
+se deduce por simetría. Si la corriente $I_2(t)$ en la bobina superior
+circula en la misma dirección que $I_1(t)$ (configuración Helmholtz),
+la relación de simetría es distinta; no obstante, la forma del campo
+resultante es bien conocida por su alta uniformidad en la región
+central, para la cual existen soluciones analíticas estándar.
+
+Por otro lado, si se considera una configuración anti-Helmholtz (corrientes
+opuestas), el sistema presenta una simetría de inversión. En este caso, el
+campo de la segunda bobina, $\boldsymbol{B}_2$, se relaciona con el de la
+primera mediante una reflexión sobre el origen:
+%
+\begin{equation}
+	\boldsymbol{B}_2(t, \boldsymbol{r}) =
+	-\boldsymbol{B}_1(t, -\boldsymbol{r}, I_1(t)).
+	\label{eq:simetria_inversion_B}
+\end{equation}
+%
+Esta importante simplificación surge de la simetría axial de las bobinas
+combinada con la simetría de paridad de la configuración. El campo total
+del par de bobinas es entonces la superposición
+$\boldsymbol{B}_{\text{par}}(t, \boldsymbol{r}) = \boldsymbol{B}_1 + \boldsymbol{B}_2$.
+El mismo análisis se aplica a los otros pares de bobinas a lo largo de los
+demás ejes.
+
+\subsubsection{Campo Eléctrico en la Configuración anti-Helmholtz}
+\label{sssec:campo_electrico_ah}
+
+Aunque el análisis cuantitativo previo ya justifica la dominancia de la
+fuerza magnética, la configuración anti-Helmholtz presenta una propiedad
+de simetría que refuerza esta conclusión.
+
+Debido a la simetría axial y de inversión de esta configuración, el
+potencial vectorial magnético $\boldsymbol{A}$ es nulo a lo largo del eje
+de las bobinas. Como consecuencia directa, el campo eléctrico inducido,
+$\boldsymbol{E} = -\partial_t \boldsymbol{A}$, también es cero sobre dicho
+eje. Esto implica que en la región central del montaje, la más relevante
+para la trayectoria del haz, el efecto del campo eléctrico es aún más
+despreciable.
+
+\subsection{Modelo III: Aproximación de Campo Cuadrupolar}
+\label{ssec:modelo_cuadrupolar}
+
+El campo generado por un par de bobinas en configuración anti-Helmholtz
+puede ser aproximado cerca de su centro por un campo de gradiente lineal,
+característico de un cuadrupolo magnético. Al superponer los campos de
+varios pares, se obtiene un campo cuadrupolar tridimensional.
+
+Una aproximación lineal para dicho campo es:
+%
+\begin{equation}
+	\boldsymbol{B}(\boldsymbol{r}, t) = b(t)
+	\left( - x_1 e_{23} + \frac{1}{2} x_2 e_{31} + \frac{1}{2} x_3 e_{12} \right).
+	\label{eq:quadrupole_field}
+\end{equation}
+%
+Este campo satisface la condición de Maxwell $\langle \nabla \boldsymbol{B} \rangle_3 = 0$.
+La dependencia temporal del campo se engloba en el coeficiente $b(t)$.
+
+Este tipo de campo de gradiente es la base de las trampas magnéticas.
+Cuando las corrientes son tales que el campo apunta hacia el origen, se
+crea un pozo de potencial que confina el haz (efecto de \emph{enfoque}).
+Inversamente, si el campo apunta hacia afuera, las partículas son
+repelidas del centro (\emph{desenfoque}).
+
+Con corrientes alternas, el sistema oscila entre un estado de enfoque y
+desenfoque. Esto puede resultar en un confinamiento dinámico neto del
+haz, un principio análogo al de las trampas de Paul para partículas
+cargadas.

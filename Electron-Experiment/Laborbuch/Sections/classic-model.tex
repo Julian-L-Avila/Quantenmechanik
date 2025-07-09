@@ -1,0 +1,75 @@
+\chapter{Análisis del Montaje Experimental}
+\label{sec:analisis_montaje}
+
+El montaje experimental presenta simetrías notables que determinan los
+posibles efectos a observar.
+
+Independientemente de la dirección relativa de los campos magnéticos
+generados por cada par de bobinas coaxiales, el sistema exhibe una
+simetría de reflexión respecto a los planos $xz$, $yz$ y $xy$.
+Esto se debe a la simetría axial intrínseca de las bobinas y a su disposición
+simétrica respecto al origen.
+
+Además, si ambos pares de bobinas operan a la misma frecuencia, se
+obtiene una simetría rotacional de $\pi/2$ en el plano $yz$.
+En el caso general de frecuencias distintas, esta se reduce a una simetría de
+rotación de $\pi$.
+Estas simetrías son fundamentales para la construcción de los modelos teóricos
+y la simplificación de los cálculos.
+Por tanto, se espera que los patrones observados en la pantalla reflejen estas
+mismas simetrías.
+
+\section{Modelos Clásicos con Álgebra Geométrica}
+\label{sec:modelo_clasico}
+
+Se postula que la dinámica del electrón está gobernada por la fuerza de
+Lorentz. En el régimen de bajas energías
+($\qty{4.1}{\kilo\eV} \ll \qty{511}{\kilo\eV}$),
+los efectos relativistas son despreciables. De esta forma, la ecuación
+diferencial a resolver es la \cref{eq:lorentz-force}, donde $-e$ y $m$ son
+la carga y la masa del electrón, respectivamente. Los campos son el
+vector eléctrico $\boldsymbol{E}$ y el bivector magnético $\boldsymbol{B}$.
+
+La ecuación se presenta en el formalismo del álgebra geométrica
+$\mathcal{C}\ell_{3}(\mathbb{R})$. El término
+$\langle \dot{\boldsymbol{x}} \boldsymbol{B} \rangle_{1}$ denota la
+proyección de grado-1 (vector) del producto geométrico, el cual
+corresponde a la fuerza magnética.
+%
+\begin{equation}
+	m \ddot{\boldsymbol{x}} = -e \left( \boldsymbol{E}
+	+ \langle \dot{\boldsymbol{x}} \boldsymbol{B} \rangle_{1} \right)
+	\label{eq:lorentz-force}
+\end{equation}
+
+Para todos los modelos se asume que no existe interacción
+electrón-electrón. Aplicando las ecuaciones de Maxwell homogéneas,
+%
+\begin{gather}
+	\label{eq:faraday-gauss}
+	\nabla \boldsymbol{E} = -\partial_t \boldsymbol{B},
+	\\
+	\label{eq:no-monopoles}
+	\langle \nabla \boldsymbol{B} \rangle_{3} = 0,
+\end{gather}
+%
+se deduce la existencia de un potencial vectorial magnético
+$\boldsymbol{A} \in \mathcal{C}\ell^1$ (\emph{i.e} $A = \langle A \rangle_{1}$)
+tal que $\boldsymbol{B} = \nabla \wedge \boldsymbol{A} \equiv \langle\nabla
+\boldsymbol{A}\rangle_{2}$.
+Sustituyendo en la ley de Faraday, se obtiene el campo eléctrico inducido
+en la ausencia de un potencial escalar ($\phi=0$):
+%
+\begin{equation}
+	\nabla \boldsymbol{E} = -\partial_t \langle\nabla \boldsymbol{A}\rangle_{2}
+	\implies
+	\left\langle \nabla (\boldsymbol{E} + \partial_t \boldsymbol{A})
+	\right\rangle_{2} = 0
+	\implies
+	\boldsymbol{E} = - \partial_t \boldsymbol{A}.
+	\label{eq:induced-E}
+\end{equation}
+
+\input{./Sections/first-model.tex}
+
+\input{./Sections/second-model.tex}

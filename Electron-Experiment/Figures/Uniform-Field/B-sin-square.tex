@@ -22,10 +22,12 @@
 		ytick distance=0.5, minor y tick num=2,
 		grid=major,
 		grid style={dashed, gray!30},
-		tick label style={font=\small, fill=white, inner sep=1pt},
+		tick label style={font=\Large, fill=white, inner sep=1pt},
+		label style={font=\Large},
 		enlarge x limits=0.1,
 		enlarge y limits=0.1,
 		legend style={
+			font=\large,
 			draw=none % Springer style often has no border on legends
 		},
 		legend cell align=left,
@@ -38,7 +40,7 @@
 			->             % Add an arrowhead to indicate direction
 			]
 			({sin(deg(2*pi*\fOne * x))}, {tanh(100*sin(deg(2*pi*\fTwo * x + \phase)))});
-		\addlegendentry{$\boldsymbol{B} e_{123}$}
+		\addlegendentry{$\boldsymbol{B} e^{-1}_{123}$}
 		\end{axis}
 	\end{tikzpicture}
 

@@ -1,0 +1,68 @@
+\section{Análisis de la Interacción de Espín}
+\label{ssec:modelo_spin}
+
+Hasta ahora, se ha modelado al electrón como una carga puntual clásica. Sin
+embargo, el electrón es una partícula cuántica con espín $\frac{1}{2}$, lo
+que le confiere un momento dipolar magnético intrínseco $\boldsymbol{\mu}$.
+Esta propiedad podría, en principio, dar lugar a una fuerza adicional si el
+campo magnético no es uniforme.
+
+El momento magnético del electrón es $\boldsymbol{\mu} = g_s \frac{-e}{2m} \boldsymbol{S}$,
+donde $\boldsymbol{S}$ es el vector de espín y $g_s \approx 2$ es el
+factor g del electrón. En presencia de un campo magnético con gradiente,
+esto genera la \emph{fuerza de Stern-Gerlach}:
+%
+\begin{equation}
+	\boldsymbol{F}_{\text{espín}} = \nabla (\boldsymbol{\mu} \cdot \boldsymbol{B}^*),
+	\label{eq:fuerza_spin}
+\end{equation}
+%
+donde $\boldsymbol{B}^*$ es el vector dual al bivector de campo magnético
+$\boldsymbol{B}$. A continuación se argumenta por qué esta fuerza es
+despreciable en comparación con la fuerza de Lorentz.
+
+\subsection{Comparación de Magnitudes}
+
+En el \emph{Modelo I} (campo uniforme), $\nabla \boldsymbol{B}^* = 0$ por
+definición, por lo que $\boldsymbol{F}_{\text{espín}}$ es idénticamente
+nula. En los modelos más realistas con gradientes de campo (II y III), se
+puede estimar la razón entre la fuerza de espín y la fuerza de Lorentz:
+%
+$$
+\frac{|\boldsymbol{F}_{\text{espín}}|}{|\boldsymbol{F}_{\text{Lorentz}}|}
+\approx \frac{|\nabla (\boldsymbol{\mu} \cdot \boldsymbol{B}^*)|}
+{|e\boldsymbol{v} \times \boldsymbol{B}^*|}
+\approx \frac{\mu_B |\nabla \boldsymbol{B}^*|}{e v |\boldsymbol{B}^*|}
+$$
+%
+donde $\mu_B = e\hbar/2m$ es el magnetón de Bohr. Suponiendo que el campo
+varía en una escala de longitud $L \sim R$ (el radio de las bobinas),
+entonces $|\nabla \boldsymbol{B}^*| \approx |\boldsymbol{B}^*|/R$. La razón se
+simplifica a:
+%
+$$
+\frac{|\boldsymbol{F}_{\text{espín}}|}{|\boldsymbol{F}_{\text{Lorentz}}|}
+\approx \frac{\hbar}{2m v R} \approx 10^{-11}
+$$
+%
+Este cálculo, usando los parámetros del montaje, demuestra que la fuerza
+de Lorentz es aproximadamente once órdenes de magnitud mayor que la
+fuerza derivada del espín, justificando plenamente su omisión.
+
+\subsection{Efecto de la Precesión de Larmor}
+
+Independientemente de la estimación anterior, existe un segundo argumento.
+En presencia de un campo $\boldsymbol{B}$, el momento magnético
+$\boldsymbol{\mu}$ del electrón no permanece fijo, sino que experimenta un
+torque que lo hace precesar alrededor de la dirección de $\boldsymbol{B}^*$
+a la \emph{frecuencia de Larmor}, $\omega_L$.
+
+Dado que la fuerza $\boldsymbol{F}_{\text{espín}}$ depende de la orientación
+instantánea de $\boldsymbol{\mu}$, esta fuerza también oscilará rápidamente.
+En el tiempo que tarda el electrón en atravesar una región con gradiente de
+campo, su espín habrá completado muchas precesiones. El efecto neto de esta
+fuerza oscilante sobre la trayectoria macroscópica se promedia a cero.
+
+Por estas dos razones, es físicamente justificable y computacionalmente
+necesario ignorar la interacción del espín para los propósitos de este
+estudio, y continuar tratando al electrón como una carga clásica.

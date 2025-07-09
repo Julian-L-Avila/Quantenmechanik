@@ -1,0 +1,73 @@
+\documentclass[border=5pt]{standalone}
+
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usepackage{siunitx}
+
+\usepackage{newtxtext, newtxmath}
+
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{patchplots}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\begin{axis}[
+		width=10cm,
+		height=10cm,
+		axis equal image,
+		title={$x=0, \, t = \qty{0.25}{\second}$},
+		xlabel={$y$ [\unit{\centi\metre}]},
+		ylabel={$z$ [\unit{\centi\metre}]},
+		label style={font=\Large},
+		tick label style={font=\Large},
+		colorbar,
+		colorbar style={
+			ylabel={$|\boldsymbol{E}|$ [\unit{\volt\per\metre}]},
+			ylabel style={font=\large},
+		},
+		colormap/viridis,
+		tick style={color=black, major tick length=4pt},
+		axis line style={-},
+		xticklabel style={/pgf/number format/fixed},
+		yticklabel style={/pgf/number format/fixed},
+		view={0}{90},
+		]
+
+		\addplot3[
+			surf,
+			shader=interp,
+			point meta=z,
+			]
+			table[
+			col sep=tab,
+			x expr={\thisrowno{0}*100},
+			y expr={\thisrowno{1}*100},
+			z expr={\thisrowno{5}},
+			header=false,
+			]
+			{../../Sim/Uniform-Field/analytical_efield_t_0.250s.tsv}; % <-- Ensure this TSV file is in the same directory
+
+	% --- Plot 2: The Vector Field (Quiver Plot) ---
+		\addplot[
+			white,
+			-stealth,      % Arrow tip style
+			point meta={sqrt(\thisrowno{3}^2 + \thisrowno{4}^2)},
+			quiver={
+				u=\thisrowno{3}, % u component of vector (B_y)
+				v=\thisrowno{4}, % v component of vector (B_z)
+				scale arrows=0.005, % Adjust this value to change arrow size. May need tuning.
+				every arrow/.append style={line width=0.7pt}, % Make arrows slightly thicker
+			},
+			]
+			table[
+			x expr={\thisrowno{0}*100},
+			y expr={\thisrowno{1}*100},
+			col sep=tab,
+			header=false,
+			]
+			{../../Sim/Uniform-Field/analytical_efield_t_0.250s.tsv}; % <-- Ensure this TSV file is in the same directory
+
+	\end{axis}
+\end{tikzpicture}
+\end{document}

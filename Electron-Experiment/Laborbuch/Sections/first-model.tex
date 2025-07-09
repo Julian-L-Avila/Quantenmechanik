@@ -1,75 +1,3 @@
-\chapter{Análisis del Montaje Experimental}
-\label{sec:analisis_montaje}
-
-El montaje experimental presenta simetrías notables que determinan los
-posibles efectos a observar.
-
-Independientemente de la dirección relativa de los campos magnéticos
-generados por cada par de bobinas coaxiales, el sistema exhibe una
-simetría de reflexión respecto a los planos $xz$, $yz$ y $xy$.
-Esto se debe a la simetría axial intrínseca de las bobinas y a su disposición
-simétrica respecto al origen.
-
-Además, si ambos pares de bobinas operan a la misma frecuencia, se
-obtiene una simetría rotacional de $\pi/2$ en el plano $yz$.
-En el caso general de frecuencias distintas, esta se reduce a una simetría de
-rotación de $\pi$.
-Estas simetrías son fundamentales para la construcción de los modelos teóricos
-y la simplificación de los cálculos.
-Por tanto, se espera que los patrones observados en la pantalla reflejen estas
-mismas simetrías.
-
-\section{Modelos Clásicos con Álgebra Geométrica}
-\label{sec:modelo_clasico}
-
-Se postula que la dinámica del electrón está gobernada por la fuerza de
-Lorentz. En el régimen de bajas energías
-($\qty{4.1}{\kilo\eV} \ll \qty{511}{\kilo\eV}$),
-los efectos relativistas son despreciables. De esta forma, la ecuación
-diferencial a resolver es la \cref{eq:lorentz-force}, donde $-e$ y $m$ son
-la carga y la masa del electrón, respectivamente. Los campos son el
-vector eléctrico $\boldsymbol{E}$ y el bivector magnético $\boldsymbol{B}$.
-
-La ecuación se presenta en el formalismo del álgebra geométrica
-$\mathcal{C}\ell_{3}(\mathbb{R})$. El término
-$\langle \dot{\boldsymbol{x}} \boldsymbol{B} \rangle_{1}$ denota la
-proyección de grado-1 (vector) del producto geométrico, el cual
-corresponde a la fuerza magnética.
-%
-\begin{equation}
-	m \ddot{\boldsymbol{x}} = -e \left( \boldsymbol{E}
-	+ \langle \dot{\boldsymbol{x}} \boldsymbol{B} \rangle_{1} \right)
-	\label{eq:lorentz-force}
-\end{equation}
-
-Para todos los modelos se asume que no existe interacción
-electrón-electrón. Aplicando las ecuaciones de Maxwell homogéneas,
-%
-\begin{gather}
-	\label{eq:faraday-gauss}
-	\nabla \boldsymbol{E} = -\partial_t \boldsymbol{B},
-	\\
-	\label{eq:no-monopoles}
-	\langle \nabla \boldsymbol{B} \rangle_{3} = 0,
-\end{gather}
-%
-se deduce la existencia de un potencial vectorial magnético
-$\boldsymbol{A} \in \mathcal{C}\ell^1$ (\emph{i.e} $A = \langle A \rangle_{1}$)
-tal que $\boldsymbol{B} = \nabla \wedge \boldsymbol{A} \equiv \langle\nabla
-\boldsymbol{A}\rangle_{2}$.
-Sustituyendo en la ley de Faraday, se obtiene el campo eléctrico inducido
-en la ausencia de un potencial escalar ($\phi=0$):
-%
-\begin{equation}
-	\nabla \boldsymbol{E} = -\partial_t \langle\nabla \boldsymbol{A}\rangle_{2}
-	\implies
-	\left\langle \nabla (\boldsymbol{E} + \partial_t \boldsymbol{A})
-	\right\rangle_{2} = 0
-	\implies
-	\boldsymbol{E} = - \partial_t \boldsymbol{A}.
-	\label{eq:induced-E}
-\end{equation}
-
 \subsection{Modelo I: Campo Magnético Espacialmente Uniforme}
 \label{ssec:campo_uniforme}
 
@@ -118,7 +46,7 @@ $\boldsymbol{E} = - \partial_t \boldsymbol{A}$, resultando en:
 \label{sssec:dinamica_b}
 
 La estructura temporal del campo magnético, descrita en la
-\cref{eq:b_field_uniform}, determina la naturaleza de la fuerza ejercida
+\cref{eq:B_field_uniform}, determina la naturaleza de la fuerza ejercida
 sobre el electrón. Para visualizar esta dinámica, se analiza la
 evolución del vector dual al bivector magnético,
 $\boldsymbol{B}^* = \boldsymbol{B}e_{123}^{-1}$. Esto equivale a realizar
@@ -164,3 +92,47 @@ campos magnéticos temporales que se pueden generar.
 	muestra una razón de frecuencias de 3:1 y un desfase $\phi=0$.}
 	\label{fig:B_fields}
 \end{figure}
+
+\subsubsection{Análisis del Campo Eléctrico Inducido}
+\label{sssec:dinamica_e}
+
+El campo eléctrico inducido $\boldsymbol{E}$ depende de la tasa de cambio
+del campo magnético, $\partial_t \boldsymbol{B}$. Su magnitud es, por
+ende, proporcional a la frecuencia de las corrientes de alimentación.
+A continuación, se cuantifica su efecto en comparación con el campo
+magnético para las condiciones específicas del experimento.
+
+La razón entre las magnitudes de las fuerzas eléctrica y magnética es:
+%
+$$
+\frac{|\boldsymbol{F}_E|}{|\boldsymbol{F}_B|} \approx
+\frac{|\boldsymbol{E}|}{v |\boldsymbol{B}|}
+$$
+%
+Para una señal sinusoidal, $|\boldsymbol{E}| \approx R \omega |\boldsymbol{B}|$,
+donde $R$ es el radio de las bobinas, $\omega$ la frecuencia angular y $v$
+la velocidad del electrón. La razón de fuerzas es entonces $\approx R\omega/v$.
+
+Con los parámetros del montaje, se tiene:
+%
+\begin{itemize}
+	\item Una frecuencia $f \approx \qty{50}{\hertz}$, que implica una frecuencia
+		angular $\omega = 2\pi f \approx \qty{314}{\radian\per\second}$.
+	\item Una energía cinética de $\qty{4.1}{\kilo\eV}$, que corresponde a una
+		velocidad del electrón de $v \approx 0.1c$.
+	\item Un radio de bobinas $R$ del orden de $\qty{6.2}{\centi\meter}$.
+\end{itemize}
+%
+Sustituyendo estos valores se obtiene:
+%
+$$
+\frac{|\boldsymbol{F}_E|}{|\boldsymbol{F}_B|} \approx \frac{R\omega}{v}
+\approx 10^{-7}
+$$
+%
+Este resultado numérico, de orden $10^{-7}$, confirma de manera
+contundente que la fuerza magnética es aproximadamente \emph{diez millones} de
+veces mayor que la fuerza eléctrica. Por lo tanto, es una aproximación
+justificada considerar que la dinámica es gobernada
+exclusivamente por el campo magnético, omitiendo el término de
+$\boldsymbol{E}$ en el modelo.
