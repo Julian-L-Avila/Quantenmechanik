@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 \subsection{Modelo I: Campo Magnético Espacialmente Uniforme}
 \label{ssec:campo_uniforme}
 
@@ -136,3 +137,96 @@ veces mayor que la fuerza eléctrica. Por lo tanto, es una aproximación
 justificada considerar que la dinámica es gobernada
 exclusivamente por el campo magnético, omitiendo el término de
 $\boldsymbol{E}$ en el modelo.
+=======
+\section{Theoretical Models}
+\label{sec:TheoreticalModels}
+
+To describe the electron beam dynamics, we develop several theoretical models.
+These models, which will be compared against experimental data, are formulated
+within both classical and quantum mechanical frameworks. We begin with the
+classical treatment.
+
+\subsection{Classical Models}
+\label{sub:ClassicalModels}
+
+The classical motion of an electron is governed by the Lorentz force. In the
+context of this experiment, the electromagnetic field consists of the
+time-varying magnetic field from the Helmholtz coils and the consequently
+induced electric field. The equation of motion for an electron of mass $m$ and
+charge $-e$ is expressed in Gaussian units using geometric algebra as
+\begin{equation}
+	m \ddot{\boldsymbol{x}} = -e \left( \boldsymbol{E}
+	+ c^{-1} \langle \dot{\boldsymbol{x}} \boldsymbol{B} \rangle_{1} \right),
+	\label{eq:lorentz-force}
+\end{equation}
+where $\boldsymbol{x}$ is the electron's position vector, $\boldsymbol{E}$ is
+the electric field vector, and $\boldsymbol{B}$ is the magnetic field
+bivector. The term $\langle \dot{\boldsymbol{x}} \boldsymbol{B} \rangle_{1}$
+denotes the grade-1 projection of the geometric product, corresponding to the
+magnetic force component.
+
+\subsubsection{Spatially Uniform Magnetic Field}
+\label{ssub:UniformMagneticField}
+
+As a first approximation, we model the magnetic field as spatially uniform,
+implying that its gradient is zero, $\nabla \boldsymbol{B} = 0$. In a
+source-free region, the fields are constrained by the homogeneous Maxwell
+equations. In the geometric algebra formalism, these are
+\begin{gather}
+	\label{eq:faraday-gauss}
+	\nabla \boldsymbol{E} = -c^{-1} \partial_t \boldsymbol{B},
+	\\
+	\label{eq:no-monopoles}
+	\langle \nabla \boldsymbol{B} \rangle_{3} = 0.
+\end{gather}
+\Cref{eq:faraday-gauss} combines Faraday's law of induction
+($\nabla \wedge \boldsymbol{E} = -c^{-1}\partial_t \boldsymbol{B}$) and Gauss's
+law for the electric field ($\nabla \cdot \boldsymbol{E} = 0$) in a
+charge-free vacuum. \Cref{eq:no-monopoles}, the no-monopole condition,
+permits the definition of a vector potential $\boldsymbol{A}$ such that
+$\boldsymbol{B} = \nabla \wedge \boldsymbol{A} =
+\langle \nabla \boldsymbol{A} \rangle_{2}$.
+
+The relation $\boldsymbol{E} = -c^{-1}\partial_t \boldsymbol{A}$ can then be
+inferred from \Cref{eq:faraday-gauss}, assuming a suitable gauge. For a
+uniform field $\boldsymbol{B}$, we adopt the symmetric gauge choice
+\begin{equation}
+	\boldsymbol{A} = \frac{1}{2} \boldsymbol{x} \cdot \boldsymbol{B}
+	= \frac{1}{2} \langle \boldsymbol{x} \boldsymbol{B} \rangle_{1},
+	\label{eq:vector-potential}
+\end{equation}
+which correctly yields $\langle \nabla \boldsymbol{A} \rangle_{2} =
+\boldsymbol{B}$. The induced electric field is therefore
+\begin{equation}
+	\boldsymbol{E} = -c^{-1}\partial_t \boldsymbol{A}
+	= -\frac{1}{2c} \langle \boldsymbol{x} (\partial_t \boldsymbol{B}) \rangle_{1}.
+\end{equation}
+Substituting this expression into the Lorentz force equation,
+\Cref{eq:lorentz-force}, we obtain the equation of motion for an electron in a
+uniform, time-varying magnetic field:
+\begin{equation}
+	m \ddot{\boldsymbol{x}} = \frac{e}{c} \left\langle \frac{1}{2}
+		\boldsymbol{x} (\partial_t \boldsymbol{B}) - \dot{\boldsymbol{x}}
+	\boldsymbol{B} \right\rangle_{1}.
+	\label{eq:eom-uniform-b}
+\end{equation}
+
+In our experiment, the transverse magnetic field is given by the bivector
+$\boldsymbol{B} = B_2(t) e_{31} + B_3(t) e_{12}$.
+We consider an electron beam injected along the primary axis,
+such that the velocity is $\dot{\boldsymbol{x}} = \dot{x}_1 e_1$.
+Substituting these forms into the equation of motion, \Cref{eq:eom-uniform-b},
+yields the component equations:
+\begin{align}
+	m \ddot{x}_1 &= \frac{e}{2c} \left( x_3 \dot{B}_2 - x_2 \dot{B}_3 \right),
+	\label{eq:eom-x1} \\
+	m \ddot{x}_2 &= \frac{e}{c} \left( \frac{1}{2} x_1 \dot{B}_3 - \dot{x}_1 B_3
+	\right),
+	\label{eq:eom-x2} \\
+		m \ddot{x}_3 &= \frac{e}{c} \left( -\frac{1}{2} x_1 \dot{B}_2 + \dot{x}_1 B_2
+		\right).
+	\label{eq:eom-x3}
+\end{align}
+This system of coupled linear ordinary differential equations describes the
+electron's trajectory under the assumed conditions.
+>>>>>>> 2fa5852783368caaa8ffed4776b83ca4ab52d900
